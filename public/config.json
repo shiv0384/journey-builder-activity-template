@@ -21,7 +21,7 @@
                 }									
 			],
           "outArguments": [],
-          "url": "https://<your-domain-here>/journeybuilder/execute",
+          "url": "https://opensms.herokuapp.com/journeybuilder/execute",
            "verb": "POST",
             "body": "",
             "header": "",
@@ -31,24 +31,24 @@
         }
     },
     "configurationArguments": {
-      "applicationExtensionKey": "wqN8iS4HorSxa9uPoh1w6es6-7jb91ZxKDha5JG2tfrFk2BkvpHJULC4KBH4fp7-2ZUOPejFZdpk_QGwo3QjiIwzGemAdQi4BlYwo5aw9_C1czPrYqAo9WRAn9gXw7EnebZx0sMmPchTt25VH0jWZGJHaRMWDZA8t38zK53yXcmYtjkBN3tWldxHvf7WI7VIXQsFQPGXaasenlm1sr9e-M_fv9Myj3VaDaPxDZK_XnPFmxZsP3W_-qZ4b89P0A2",
+      "applicationExtensionKey": "cddaba45-88a0-4d81-ab16-c502a730d112",
       "save": {
-        "url": "https://github.com/shiv0384/journey-builder-activity-template/save",
+         "url": "https://opensms.herokuapp.com/journeybuilder/save",
           "verb": "POST",
         "useJwt": true
        },
        "publish": {
-        "url": "https://github.com/shiv0384/journey-builder-activity-template/publish",
+        "url": "https://opensms.herokuapp.com/journeybuilder/publish",
            "verb": "POST",
         "useJwt": true
        },
       "stop": {
-        "url": "https://github.com/shiv0384/journey-builder-activity-template/stop",
+        "url": "https://opensms.herokuapp.com/journeybuilder/stop",
            "verb": "POST",
         "useJwt": true
       },
       "validate": {
-        "url": "https://github.com/shiv0384/journey-builder-activity-template/validate",
+        "url": "https://opensms.herokuapp.com/journeybuilder/validate",
         "verb": "POST",
         "useJwt": true
       }
