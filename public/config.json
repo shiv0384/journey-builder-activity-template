@@ -21,7 +21,7 @@
                 }									
 			],
           "outArguments": [],
-          "url": "https://opensms.herokuapp.com/journeybuilder/execute",
+          "url": "https://newappshark.herokuapp.com/journeybuilder/execute",
            "verb": "POST",
             "body": "",
             "header": "",
@@ -33,7 +33,7 @@
     "configurationArguments": {
       "applicationExtensionKey": "cddaba45-88a0-4d81-ab16-c502a730d112",
       "save": {
-         "url": "https://opensms.herokuapp.com/journeybuilder/save",
+         "url": "https://newappshark.herokuapp.com/journeybuilder/save",
           "verb": "POST",
         "useJwt": true
        },
@@ -43,12 +43,12 @@
         "useJwt": true
        },
       "stop": {
-        "url": "https://opensms.herokuapp.com/journeybuilder/stop",
+        "url": "https://newappshark.herokuapp.com/journeybuilder/stop",
            "verb": "POST",
         "useJwt": true
       },
       "validate": {
-        "url": "https://opensms.herokuapp.com/journeybuilder/validate",
+        "url": "https://newappshark.herokuapp.com/journeybuilder/validate",
         "verb": "POST",
         "useJwt": true
       }
