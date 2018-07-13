@@ -31,7 +31,7 @@
         }
     },
     "configurationArguments": {
-      "applicationExtensionKey": "__application_key_from_appcenter_here__",
+      "applicationExtensionKey": "wqN8iS4HorSxa9uPoh1w6es6-7jb91ZxKDha5JG2tfrFk2BkvpHJULC4KBH4fp7-2ZUOPejFZdpk_QGwo3QjiIwzGemAdQi4BlYwo5aw9_C1czPrYqAo9WRAn9gXw7EnebZx0sMmPchTt25VH0jWZGJHaRMWDZA8t38zK53yXcmYtjkBN3tWldxHvf7WI7VIXQsFQPGXaasenlm1sr9e-M_fv9Myj3VaDaPxDZK_XnPFmxZsP3W_-qZ4b89P0A2",
       "save": {
         "url": "https://<your-domain-here>/journeybuilder/save",
           "verb": "POST",
