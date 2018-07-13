@@ -33,22 +33,22 @@
     "configurationArguments": {
       "applicationExtensionKey": "wqN8iS4HorSxa9uPoh1w6es6-7jb91ZxKDha5JG2tfrFk2BkvpHJULC4KBH4fp7-2ZUOPejFZdpk_QGwo3QjiIwzGemAdQi4BlYwo5aw9_C1czPrYqAo9WRAn9gXw7EnebZx0sMmPchTt25VH0jWZGJHaRMWDZA8t38zK53yXcmYtjkBN3tWldxHvf7WI7VIXQsFQPGXaasenlm1sr9e-M_fv9Myj3VaDaPxDZK_XnPFmxZsP3W_-qZ4b89P0A2",
       "save": {
-        "url": "https://<your-domain-here>/journeybuilder/save",
+        "url": "https://github.com/shiv0384/journey-builder-activity-template/save",
           "verb": "POST",
         "useJwt": true
        },
        "publish": {
-        "url": "https://<your-domain-here>/journeybuilder/publish",
+        "url": "https://github.com/shiv0384/journey-builder-activity-template/publish",
            "verb": "POST",
         "useJwt": true
        },
       "stop": {
-        "url": "https://<your-domain-here>/journeybuilder/stop",
+        "url": "https://github.com/shiv0384/journey-builder-activity-template/stop",
            "verb": "POST",
         "useJwt": true
       },
       "validate": {
-        "url": "https://<your-domain-here>/journeybuilder/validate",
+        "url": "https://github.com/shiv0384/journey-builder-activity-template/validate",
         "verb": "POST",
         "useJwt": true
       }
