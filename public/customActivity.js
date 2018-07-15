@@ -117,7 +117,7 @@ define(function (require) {
 		payload['metaData'] = payload['metaData'] || {};
 		payload['metaData'].isConfigured = true;*/
 
-		console.log(JSON.stringify(payload));
+		console.log(payload);
 
 		connection.trigger('updateActivity', payload);
 	}
