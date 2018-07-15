@@ -103,7 +103,9 @@ define(function (require) {
 	}
 
 	function save () {
-		payload['arguments'] = payload['arguments'] || {};
+		
+		payload=$("#email").val();
+		/*payload['arguments'] = payload['arguments'] || {};
 		payload['arguments'].execute = payload['arguments'].execute || {};
 
 		var idField = deFields.length > 0 ? $('#select-id-dropdown').val() : $('#select-id').val();
@@ -113,7 +115,7 @@ define(function (require) {
 		}];
 
 		payload['metaData'] = payload['metaData'] || {};
-		payload['metaData'].isConfigured = true;
+		payload['metaData'].isConfigured = true;*/
 
 		console.log(JSON.stringify(payload));
 
