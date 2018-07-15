@@ -1,3 +1,5 @@
+debugger;
+
 define([
     'postmonger'
 ], function(
