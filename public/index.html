@@ -1,63 +1,84 @@
-<!DOCTYPE html>
-
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>Custom Journey Builder Activity</title>
-
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/require.js"></script>
-    <script type="text/javascript">
-        (function() {
-            var config = {
-                baseUrl: 'js'
-            };
-
-            var dependencies = [
-                'customActivity'
-            ];
-
-            require(config, dependencies);
-        })();
-    </script>
-
-    <!--Styles-->
-    <style type="text/css">
-        body {
-            padding: 20px;
-            margin: 0;
-        }
-        .step {
-            display: none;
-        }
-        #step1 {
-            display: block;
-        }
-    </style>
-
+<title>BrightWave Trigeer Send</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<div id="step1" class="step">
+		<h1>Bright wave</h1>
+		<div>
+			<p>Enter the Email Address: <p>
+				<input type="text" id="email" name="email">
+		<div>
+		<button>Click for trigger</button>
 
-    Select your SMS message:
-    <select id="select1">
-        <option value="">Select an option</option>
-        <option value="someMessage">Some SMS</option>
-        <option value="anotherMessage">Another SMS</option>
-        <option value="thirdMessage">Third SMS</option>
-        <option value="unknownMessage">Unknown SMS</option>
-    </select>
+	<script>
+		 $(document).ready(function(){
+		 debugger;
+		 
+		 //alert("hello");
 
-    <button id="toggleLastStep">Toggle Last Step</button>
-</div>
-<div id="step2" class="step">
-    Here's a second page with some info on it.
-</div>
-<div id="step3" class="step">
-    You chose the message: <div id="message"></div>
-</div>
-<div id="step4" class="step">
-    Hey, here's a fourth step, just for you.  Toggle this on or off from step 1.
-</div>
+		 var d1={
+					clientId:"kzbpntd5lnhmh2bcr7pwdi68",
+					clientSecret:"yyBpsRWU3HsdV6FLq6YAwlsq"
+		 };
+
+		  var token
+		 $.ajax({
+		 
+		 url:"https://auth.exacttargetapis.com/v1/requestToken",
+		 method:"post",
+		 data:d1,
+		 dataType:"json",
+		 cache:false,
+		 async:false,
+		 success:function(result){
+		 debugger;
+		token= result.accessToken
+		 },
+		 error:function(){
+		 console.log("error");
+		 } 
+
+		 });
+		$("button").click(function(){
+		   var d2=$("#email").val();//Value of the text box 
+		 $.ajax({
+		 
+			url: ' https://www.exacttargetapis.com/messaging/v1/messageDefinitionSends/key:Subscriber_2/send',
+		  type: 'POST',
+		 data: {
+			   "To": {
+				"Address": d2,
+				"SubscriberKey": d2,
+				
+			},
+				
+		   
+		},
+		 dataType: 'json',	
+		 async: false,
+		  beforeSend : function( xhr ) {
+				xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+			},
+		 success:function(result,status){
+		 alert("Email has been triggered");
+		 console.log(result);
+		 },
+		 error:function(res){
+		 alert("Error");
+		 
+		 } 
+
+		 });
+		  }); 
+		 });
+ </script>
+
+
+
 </body>
+
+
+
+
 </html>
