@@ -1,4 +1,3 @@
-
 define([
     'postmonger'
 ], function(
@@ -27,8 +26,7 @@ define([
     connection.on('clickedBack', onClickedBack);
     connection.on('gotoStep', onGotoStep);
 
-    function onRender() 
-    
+    function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
         connection.trigger('ready');
 
