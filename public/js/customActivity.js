@@ -28,7 +28,7 @@ define([
     connection.on('gotoStep', onGotoStep);
 
     function onRender() 
-    debugger;
+    
         // JB will respond the first time 'ready' is called with 'initActivity'
         connection.trigger('ready');
 
