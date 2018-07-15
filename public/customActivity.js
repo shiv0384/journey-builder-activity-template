@@ -15,7 +15,7 @@ define([
         { "label": "Step 4", "key": "step4", "active": false }
     ];
     var currentStep = steps[0].key;
-debugger;
+
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
@@ -27,7 +27,6 @@ debugger;
     connection.on('gotoStep', onGotoStep);
 
     function onRender() {
-	    debugger;
         // JB will respond the first time 'ready' is called with 'initActivity'
         connection.trigger('ready');
 
