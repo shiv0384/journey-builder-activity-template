@@ -1,18 +1,30 @@
-<!DOCTYPE html>
-
-<html lang="en">
+<html>
 <head>
-<title>Appshark SMS Send</title>
+<title>BrightWave Trigeer Send</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	 <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/require.js"></script>
 </head>
 <body>
-		<h1>    open SMS</h1>
+		<h1>Bright wave</h1>
 		<div>
 			<p>Enter the Email Address: <p>
 				<input type="text" id="email" name="email">
 		<div>
 		<button id="btnSubmit">Click for trigger</button>
+ <script type="text/javascript">
+        (function() {
+            var config = {
+                baseUrl: 'js'
+            };
 
+            var dependencies = [
+                'customActivity'
+            ];
+
+            require(config, dependencies);
+        })();
+    </script>
 	<script>
 $(document).ready(function() {
 
@@ -35,7 +47,7 @@ $("#btnSubmit").click(function(){
         withCredentials: true
     }
       success:function(){
-		 alert("SMS has been sent");
+		 alert("Email has been triggered");
 		 console.log(result);
 		 },
 		 error:function(res){
@@ -46,6 +58,7 @@ $("#btnSubmit").click(function(){
 	});
 	});
 
+</script>
 </body>
 
 
