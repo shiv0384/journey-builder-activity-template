@@ -12,36 +12,28 @@
 		<button id="btnSubmit">Click for trigger</button>
 
 	<script>
-$(document).ready(function() {
+$$(document).ready(function() {
 
 $("#btnSubmit").click(function(){
-alert("hello");
-debugger;
     $.ajax({
       type: 'POST',
-      url: 'https://appsharkopenmsg-developer-edition.na24.force.com/services/apexrest/OpenSMSPro/MarketingCloudSendSMS',  
-	  dataType:"json",
-	 cache:false,
-	 async:false,
+      username: 'pavani.jidagam@opensms.com ',
+      password: 'Appshark7',
+      url: 'https://appsharkopenmsg-developer-edition.na24.force.com/services/apexrest/OpenSMSPro/MarketingCloudSendSMS',        
       xhrFields: {
         withCredentials: true
       },
       data: {
-        "strMobileNumber" : "9620225800",
-       "strTxtMsg" : "Hello World"
+        "To" : "+91962022580",
+        "From" : "+12016902194",
+        "Body" : "Hello World"
       },
-	  beforeSend : function( xhr ) {
-				xhr.setRequestHeader('Authorization', 'Bearer ');
-			},
       success: function(data) {
-	  alert(data);
         console.log(data);
       },
       error: function(data) {
         console.log(data);
       }
-    });
-    });
     });
 
 </script>
