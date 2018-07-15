@@ -1,3 +1,4 @@
+debugger;
 define([
     'postmonger'
 ], function(
@@ -17,7 +18,7 @@ define([
     var currentStep = steps[0].key;
 
     $(window).ready(onRender);
-
+debugger;
     connection.on('initActivity', initialize);
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
@@ -26,7 +27,8 @@ define([
     connection.on('clickedBack', onClickedBack);
     connection.on('gotoStep', onGotoStep);
 
-    function onRender() {
+    function onRender() 
+    debugger;
         // JB will respond the first time 'ready' is called with 'initActivity'
         connection.trigger('ready');
 
