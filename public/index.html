@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-<title>BrightWave Trigeer Send</title>
+<title>Appshark SMS Send</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
@@ -19,28 +19,32 @@ $(document).ready(function() {
 $("#btnSubmit").click(function(){
     $.ajax({
       type: 'POST',
+	  dataType: 'json',
+	  headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
       username: 'pavani.jidagam@opensms.com ',
       password: 'Appshark7',
       url: 'https://appsharkopenmsg-developer-edition.na24.force.com/services/apexrest/OpenSMSPro/MarketingCloudSendSMS',        
-      xhrFields: {
-        withCredentials: true
-      },
       data: {
-        "To" : "+91962022580",
-        "From" : "+12016902194",
-        "Body" : "Hello World"
+        "strMobileNumber" : "+919620225800",
+        "strTxtMsg" : "Hello World"
       },
-      success: function(data) {
-        console.log(data);
-      },
-      error: function(data) {
-        console.log(data);
-      }
+	 crossDomain : true,
+    xhrFields: {
+        withCredentials: true
+    }
+      success:function(){
+		 alert("SMS has been sent");
+		 console.log(result);
+		 },
+		 error:function(res){
+		 alert("Error");
+		 
+		 } 
     });
 	});
 	});
-
-</script>
 
 </body>
 
