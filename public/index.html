@@ -1,19 +1,24 @@
 <html>
 <head>
-<title>BrightWave Trigeer Send</title>
+<title>send sms data</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-		<h1>Bright wave</h1>
+		<h1>Send sms </h1>
 		<div>
-			<p>Enter the Email Address: <p>
+			<p>Enter the Mobile No: <p>
 				<input type="text" id="email" name="email">
 		<div>
 		<button>Click for trigger</button>
 
 	<script>
-		 $(document).ready(function(){
-		 var tokendata;
+		$("button").click(function(){
+		var d1={
+					"strMobileNumber":"8452881510",
+					"strTxtMsg":"Text message for open data source "
+		 };
+		   var d2=$("#email").val();
+		var tokendata;
 		 $.ajax({
 		 
 		 url:"https://login.salesforce.com/services/oauth2/token?client_id=3MVG9sG9Z3Q1RlbeZ3x_5JrzSFxlATWV7amV.1PtetznXcMooCQBQHBf6YgcAQDJtSy317Zpo4kevq_65cbGI&client_secret=5906482776105122251&username=pavani.jidagam@opensms.com&password=Appshark7&grant_type=password ",
@@ -22,22 +27,15 @@
 		 cache:false,
 		 async:false,
 		 success:function(result){
-		 debugger;
-		 tokendata= result.access_token;
+			 tokendata= result.access_token;
 		 },
 		 error:function(){
 		 console.log("error");
 		 } 
 
 		 });
-		$("button").click(function(){
-		var d1={
-					"strMobileNumber":"8452881510",
-					"strTxtMsg":"suresh how are you "
-		 };
-		   var d2=$("#email").val();//Value of the text box 
-			debugger;
-		  $.ajax({
+		//Value of the text box 
+		$.ajax({
 		 url: "https://appsharkopenmsg-developer-edition.na24.force.com/services/apexrest/OpenSMSPro/MarketingCloudSendSMS",
 		  method: "post",
 		  async: false,
@@ -47,9 +45,7 @@
 				xhr.setRequestHeader('Authorization', 'Bearer ' + tokendata);
 			},
 		 success:function(result,status){
-		 debugger;
-		 alert("Email has been triggered");
-		 console.log(result);
+		 alert(result);
 		 },
 		 error:function(res){
 		 alert("Error");
@@ -58,7 +54,7 @@
 
 		 });
 		  }); 
-		 });
+		
  </script>
 
 
