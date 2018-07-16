@@ -2,8 +2,6 @@
 <head>
 <title>BrightWave Trigeer Send</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	 <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/require.js"></script>
 </head>
 <body>
 		<h1>Bright wave</h1>
@@ -11,57 +9,60 @@
 			<p>Enter the Email Address: <p>
 				<input type="text" id="email" name="email">
 		<div>
-		<button id="btnSubmit">Click for trigger</button>
- <script type="text/javascript">
-        (function() {
-            var config = {
-                baseUrl: 'js'
-            };
+		<button>Click for trigger</button>
 
-            var dependencies = [
-                'customActivity'
-            ];
-
-            require(config, dependencies);
-        })();
-    </script>
 	<script>
-$(document).ready(function() {
+		 $(document).ready(function(){
+		 var tokendata;
+		 $.ajax({
+		 
+		 url:"https://login.salesforce.com/services/oauth2/token?client_id=3MVG9sG9Z3Q1RlbeZ3x_5JrzSFxlATWV7amV.1PtetznXcMooCQBQHBf6YgcAQDJtSy317Zpo4kevq_65cbGI&client_secret=5906482776105122251&username=pavani.jidagam@opensms.com&password=Appshark7&grant_type=password ",
+		 method:"post",
+		 dataType:"json",
+		 cache:false,
+		 async:false,
+		 success:function(result){
+		 debugger;
+		 tokendata= result.access_token;
+		 },
+		 error:function(){
+		 console.log("error");
+		 } 
 
-$("#btnSubmit").click(function(){
-    $.ajax({
-      type: 'POST',
-	  dataType: 'json',
-	  headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-      username: 'pavani.jidagam@opensms.com ',
-      password: 'Appshark7',
-	  client_id:'3MVG9sG9Z3Q1RlbeZ3x_5JrzSFxlATWV7amV.1PtetznXcMooCQBQHBf6YgcAQDJtSy317Zpo4kevq_65cbGI',
-	  client_secret:'5906482776105122251',
-	  grant_type:'password',
-      url: 'https://appsharkopenmsg-developer-edition.na24.force.com/services/apexrest/OpenSMSPro/MarketingCloudSendSMS',        
-      data: {
-        "strMobileNumber" : "+919620225800",
-        "strTxtMsg" : "Hello World"
-      },
-	 crossDomain : true,
-    xhrFields: {
-        withCredentials: true
-    },
-      success:function(result){
+		 });
+		$("button").click(function(){
+		   var d2=$("#email").val();//Value of the text box 
+			debugger;
+		  $.ajax({
+		 url: "https://appsharkopenmsg-developer-edition.na24.force.com/services/apexrest/OpenSMSPro/MarketingCloudSendSMS",
+		  type: "POST",
+		  datatype :"application/json",
+		  async: false,
+		  contentType: "application/json; charset=utf-8",	
+		   data: {
+					"strMobileNumber":"8452881510",
+					"strTxtMsg":"Please tell me if u got message"
+			     },
+	     beforeSend : function( xhr ) {
+				xhr.setRequestHeader('Authorization', 'Bearer ' + tokendata);
+			},
+		 success:function(result,status){
+		 debugger;
 		 alert("Email has been triggered");
 		 console.log(result);
 		 },
-		 error:function(data){
-		 alert(data);
+		 error:function(res){
+		 alert("Error");
 		 
 		 } 
-    });
-	});
-	});
 
-</script>
+		 });
+		  }); 
+		 });
+ </script>
+
+
+
 </body>
 
 
