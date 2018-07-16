@@ -50,8 +50,8 @@ $("#btnSubmit").click(function(){
 		 alert("Email has been triggered");
 		 console.log(result);
 		 },
-		 error:function(res){
-		 alert("Error");
+		 error:function(result,data){
+		 alert(data);
 		 
 		 } 
     });
