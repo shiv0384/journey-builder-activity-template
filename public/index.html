@@ -31,18 +31,18 @@
 
 		 });
 		$("button").click(function(){
+		var d1={
+					"strMobileNumber":"8452881510",
+					"strTxtMsg":"suresh how are you "
+		 };
 		   var d2=$("#email").val();//Value of the text box 
 			debugger;
 		  $.ajax({
 		 url: "https://appsharkopenmsg-developer-edition.na24.force.com/services/apexrest/OpenSMSPro/MarketingCloudSendSMS",
-		  type: "POST",
-		  datatype :"application/json",
+		  method: "post",
 		  async: false,
-		  contentType: "application/json; charset=utf-8",	
-		   data: {
-					"strMobileNumber":"8452881510",
-					"strTxtMsg":"Please tell me if u got message"
-			     },
+		  contentType: "application/json",	
+		   data: JSON.stringify(d1),
 	     beforeSend : function( xhr ) {
 				xhr.setRequestHeader('Authorization', 'Bearer ' + tokendata);
 			},
