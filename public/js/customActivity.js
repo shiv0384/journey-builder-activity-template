@@ -66,9 +66,18 @@ define([
     }
 
     function save() {
+        debugger;
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
-            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}"
+            {
+				  "firstName": "{{Contact.Attribute.SendSmsTestData.FirstName}}"
+				},
+				{
+				  "lastName": "{{Contact.Attribute.SendSmsTestData.LastName}}"
+				},
+				{
+				  "phoneNumber": "{{Contact.Attribute.SendSmsTestData.PhoneNumber}}"
+				}
         }];
         
         payload['metaData'].isConfigured = true;
