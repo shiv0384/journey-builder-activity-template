@@ -30,7 +30,7 @@
         }
     },
     "configurationArguments": {
-      "applicationExtensionKey": "cddaba45-88a0-4d81-ab16-c502a730d112",
+      "applicationExtensionKey": "2472e60a-9b16-4d31-9d3b-84af44788d20",
       "save": {
          "url": "https://opensms.herokuapp.com/journeybuilder/save",
           "verb": "POST",
