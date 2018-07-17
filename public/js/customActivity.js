@@ -1,129 +1,84 @@
-'use strict';
-debugger;
-define(function (require) {
-	var Postmonger = require('postmonger');
-	var connection = new Postmonger.Session();
-	var payload = {};
-	var steps = [
-		{'key': 'eventdefinitionkey', 'label': 'Event Definition Key'},
-		{'key': 'idselection', 'label': 'ID Selection'}
-	];
-	var currentStep = steps[0].key;
-	var eventDefinitionKey = '';
-	var deFields = [];
+define([
+    'postmonger'
+], function (
+    Postmonger
+) {
+    'use strict';
 
-	$(window).ready(function () {
-		connection.trigger('ready');
-		connection.trigger('requestInteraction');
-	});
+    var connection = new Postmonger.Session();
+    var authTokens = {};
+    var payload = {};
+    $(window).ready(onRender);
 
-	function initialize (data) {
-		if (data) {
-			payload = data;
-		}
-	}
+    connection.on('initActivity', initialize);
+    connection.on('requestedTokens', onGetTokens);
+    connection.on('requestedEndpoints', onGetEndpoints);
 
-	function onClickedNext () {
-		if (currentStep.key === 'idselection') {
-			save();
-		} else {
-			connection.trigger('nextStep');
-		}
-	}
+    connection.on('clickedNext', save);
+   
+    function onRender() {
+        // JB will respond the first time 'ready' is called with 'initActivity'
+        connection.trigger('ready');
 
-	function onClickedBack () {
-		connection.trigger('prevStep');
-	}
+        connection.trigger('requestTokens');
+        connection.trigger('requestEndpoints');
 
-	function onGotoStep (step) {
-		showStep(step);
-		connection.trigger('ready');
-	}
+    }
 
-	function showStep (step, stepIndex) {
-		if (stepIndex && !step) {
-			step = steps[stepIndex - 1];
-		}
+    function initialize(data) {
+        console.log(data);
+        if (data) {
+            payload = data;
+        }
+        
+        var hasInArguments = Boolean(
+            payload['arguments'] &&
+            payload['arguments'].execute &&
+            payload['arguments'].execute.inArguments &&
+            payload['arguments'].execute.inArguments.length > 0
+        );
 
-		currentStep = step;
+        var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
-		$('.step').hide();
+        console.log(inArguments);
 
-		switch (currentStep.key) {
-		case 'eventdefinitionkey':
-			$('#step1').show();
-			$('#step1 input').focus();
-			break;
-		case 'idselection':
-			$('#step2').show();
-			$('#step2 input').focus();
-			break;
-		}
-	}
+        $.each(inArguments, function (index, inArgument) {
+            $.each(inArgument, function (key, val) {
+                
+              
+            });
+        });
 
-	function requestedInteractionHandler (settings) {
-		try {
-			eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
-			$('#select-entryevent-defkey').val(eventDefinitionKey);
+        connection.trigger('updateButton', {
+            button: 'next',
+            text: 'done',
+            visible: true
+        });
+    }
 
-			if (settings.triggers[0].type === 'SalesforceObjectTriggerV2' &&
-					settings.triggers[0].configurationArguments &&
-					settings.triggers[0].configurationArguments.eventDataConfig) {
+    function onGetTokens(tokens) {
+        console.log(tokens);
+        authTokens = tokens;
+    }
 
-				// This workaround is necessary as Salesforce occasionally returns the eventDataConfig-object as string
-				if (typeof settings.triggers[0].configurationArguments.eventDataConfig === 'stirng' ||
-							!settings.triggers[0].configurationArguments.eventDataConfig.objects) {
-						settings.triggers[0].configurationArguments.eventDataConfig = JSON.parse(settings.triggers[0].configurationArguments.eventDataConfig);
-				}
+    function onGetEndpoints(endpoints) {
+        console.log(endpoints);
+    }
 
-				settings.triggers[0].configurationArguments.eventDataConfig.objects.forEach((obj) => {
-					deFields = deFields.concat(obj.fields.map((fieldName) => {
-						return obj.dePrefix + fieldName;
-					}));
-				});
+    function save() {
+        var postcardURLValue = $('#postcard-url').val();
+        var postcardTextValue = $('#postcard-text').val();
 
-				deFields.forEach((option) => {
-					$('#select-id-dropdown').append($('<option>', {
-						value: option,
-						text: option
-					}));
-				});
+        payload['arguments'].execute.inArguments = [{
+            "tokens": authTokens,
+            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}"
+        }];
+        
+        payload['metaData'].isConfigured = true;
 
-				$('#select-id').hide();
-				$('#select-id-dropdown').show();
-			} else {
-				$('#select-id-dropdown').hide();
-				$('#select-id').show();
-			}
-		} catch (e) {
-			console.error(e);
-			$('#select-id-dropdown').hide();
-			$('#select-id').show();
-		}
-	}
+        console.log(payload);
+        connection.trigger('updateActivity', payload);
+    }
 
-	function save () {
-		debugger;
-		payload['arguments'] = payload['arguments'] || {};
-		payload['arguments'].execute = payload['arguments'].execute || {};
 
-		var idField = deFields.length > 0 ? $('#select-id-dropdown').val() : $('#select-id').val();
-
-		payload['arguments'].execute.inArguments = [{
-			'serviceCloudId': '{{Event.' + eventDefinitionKey + '.\"' + idField + '\"}}'
-		}];
-
-		payload['metaData'] = payload['metaData'] || {};
-		payload['metaData'].isConfigured = true;
-
-		console.log(JSON.stringify(payload));
-
-		connection.trigger('updateActivity', payload);
-	}
-
-	connection.on('initActivity', initialize);
-	connection.on('clickedNext', onClickedNext);
-	connection.on('clickedBack', onClickedBack);
-	connection.on('gotoStep', onGotoStep);
-	connection.on('requestedInteraction', requestedInteractionHandler);
 });
