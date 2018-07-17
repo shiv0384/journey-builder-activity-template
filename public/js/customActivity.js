@@ -1,33 +1,31 @@
 define([
     'postmonger'
-], function(
+], function (
     Postmonger
 ) {
     'use strict';
 
     var connection = new Postmonger.Session();
+    var authTokens = {};
     var payload = {};
-    var lastStepEnabled = false;
-	var steps = [ // initialize to the same value as what's set in config.json for consistency
-				{ "label": "Configure Activity", "key": "Configure Activity" },
-        
-				];
-	var currentStep = steps[0].key;
-
     $(window).ready(onRender);
-	connection.on('initActivity', initialize);
+
+    connection.on('initActivity', initialize);
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
 
-	connectin.on('clickedNext',save);
-	
-	function onRender(){
-	//jb will respond the first time ready is called with initactivity
-	connection.trigger('ready')
-	connection.trigger('requestTokens');
-	connection.trigger('requestEndpoints');
-	}
-	function initialize(data) {
+    connection.on('clickedNext', save);
+   
+    function onRender() {
+        // JB will respond the first time 'ready' is called with 'initActivity'
+        connection.trigger('ready');
+
+        connection.trigger('requestTokens');
+        connection.trigger('requestEndpoints');
+
+    }
+
+    function initialize(data) {
         console.log(data);
         if (data) {
             payload = data;
@@ -57,43 +55,29 @@ define([
             visible: true
         });
     }
-	function onGetTokens(tokens) {
+
+    function onGetTokens(tokens) {
         console.log(tokens);
         authTokens = tokens;
     }
 
     function onGetEndpoints(endpoints) {
-        payload['arguments'] = payload['arguments'] || {};
+        console.log(endpoints);
+    }
 
-		payload['arguments'].execute = payload['arguments'].execute || {};
+    function save() {
+             payload['arguments'].execute.inArguments = [{
+            "tokens": authTokens,
+            { "firstName":"{{Contact.Attribute.SendSmsTestData.FirstName}}"}, 
+				{ "lastName":"{{Contact.Attribute.SendSmsTestData.LastName}}"}, 
+				{ "phoneNumber":"{{Contact.Attribute.SendSmsTestData.PhoneNumber}}"}
+        }];
+        
+        payload['metaData'].isConfigured = true;
 
-
-
-		var idField = deFields.length > 0 ? $('#select-id-dropdown').val() : $('#select-id').val();
-
-
-
-		payload['arguments'].execute.inArguments = [{
-
-			'serviceCloudId': '{{Event.' + eventDefinitionKey + '.\"' + idField + '\"}}'
-
-		}];
-
-
-
-		payload['metaData'] = payload['metaData'] || {};
-
-		payload['metaData'].isConfigured = true;
-
-
-
-		console.log(JSON.stringify(payload));
-
-
-
-		connection.trigger('updateActivity', payload);
+        console.log(JSON.stringify(payload));
+        connection.trigger('updateActivity', payload);
     }
 
 
 });
-	
