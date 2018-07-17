@@ -19,13 +19,13 @@
 		   		{ "Contact.Key":"{{Contact.Key}}" },
                  
 				{
-				  "firstName": "{{Contact.Attribute.Sms_data.FirstName}}"
+				  "firstName": "{{Contact.Attribute.DEnanme.FirstName}}"
 				},
 				{
-				  "lastName": "{{Contact.Attribute.Sms_data.LastName}}"
+				  "lastName": "{{Contact.Attribute.DEnanme.LastName}}"
 				},
 				{
-				  "phoneNumber": "{{Contact.Attribute.Sms_data.PhoneNumber}}"
+				  "phoneNumber": "{{Contact.Attribute.DEnanme.PhoneNumber}}"
 				},
 							
 			],
