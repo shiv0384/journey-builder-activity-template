@@ -16,8 +16,9 @@
     "arguments": {
         "execute": {
            "inArguments":[
-		   		 "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}" 
-							
+				{
+                    "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
+                }									
 			],
           "outArguments": [],
           "url": "https://opensms.herokuapp.com/journeybuilder/execute",
@@ -25,7 +26,7 @@
             "body": "",
             "header": "",
             "format": "json",
-            "useJwt": false,
+            "useJwt": true,
             "timeout": 10000
         }
     },
@@ -34,22 +35,22 @@
       "save": {
          "url": "https://opensms.herokuapp.com/journeybuilder/save",
           "verb": "POST",
-        "useJwt": false
+        "useJwt": true
        },
        "publish": {
         "url": "https://opensms.herokuapp.com/journeybuilder/publish",
            "verb": "POST",
-        "useJwt": false
+        "useJwt": true
        },
       "stop": {
         "url": "https://opensms.herokuapp.com/journeybuilder/stop",
            "verb": "POST",
-        "useJwt": false
+        "useJwt": true
       },
       "validate": {
         "url": "https://opensms.herokuapp.com/journeybuilder/validate",
         "verb": "POST",
-        "useJwt": false
+        "useJwt": true
       }
     },
     "wizardSteps": [
