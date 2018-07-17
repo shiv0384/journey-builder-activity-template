@@ -1,31 +1,35 @@
 define([
     'postmonger'
-], function (
+], function(
     Postmonger
 ) {
     'use strict';
 
     var connection = new Postmonger.Session();
-    var authTokens = {};
     var payload = {};
-    $(window).ready(onRender);
+    var lastStepEnabled = false;
+	var steps = [ // initialize to the same value as what's set in config.json for consistency
+				{ "label": "Step 1", "key": "step1" },
+        
+				];
+	var currentStep = steps[0].key;
 
-    connection.on('initActivity', initialize);
+    $(window).ready(onRender);
+	connection.on('initActivity', initialize);
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
 
-    connection.on('clickedNext', save);
-   
-    function onRender() {
-        // JB will respond the first time 'ready' is called with 'initActivity'
-        connection.trigger('ready');
-
-        connection.trigger('requestTokens');
-        connection.trigger('requestEndpoints');
-
-    }
-
-    function initialize(data) {
+    connection.on('clickedNext', onClickedNext);
+    connection.on('clickedBack', onClickedBack);
+    connection.on('gotoStep', onGotoStep);
+	
+	connectin.on('clickedNext',save);
+	function onRender(){
+	//jb will respond the first time ready is called with initactivity
+	connection.trigger('ready')
+	connection.trigger('requestTokens');
+	connection.trigger('requestEndpoints');
+	function initialize(data) {
         console.log(data);
         if (data) {
             payload = data;
@@ -55,8 +59,7 @@ define([
             visible: true
         });
     }
-
-    function onGetTokens(tokens) {
+	function onGetTokens(tokens) {
         console.log(tokens);
         authTokens = tokens;
     }
@@ -64,14 +67,12 @@ define([
     function onGetEndpoints(endpoints) {
         console.log(endpoints);
     }
-
-    function save() {
-        debugger
-        var postcardURLValue = $('#email').val();
-      
-        payload['arguments'].execute.inArguments = [{
+	function save() {
+          payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
-            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}"
+			"firstName": "{{Contact.Attribute.PostcardJourney.FirstName}}",
+			"lastName": "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
+            "phoneNumber": "{{Contact.Attribute.PostcardJourney.PhoneNumber}}"
         }];
         
         payload['metaData'].isConfigured = true;
@@ -82,3 +83,4 @@ define([
 
 
 });
+	
