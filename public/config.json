@@ -16,17 +16,7 @@
     "arguments": {
         "execute": {
            "inArguments":[
-		   		{ "Contact.Key":"{{Contact.Key}}" },
-                 
-				{
-				  "firstName": "{{Contact.Attribute.DEnanme.FirstName}}"
-				},
-				{
-				  "lastName": "{{Contact.Attribute.DEnanme.LastName}}"
-				},
-				{
-				  "phoneNumber": "{{Contact.Attribute.DEnanme.PhoneNumber}}"
-				},
+		   		 "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
 							
 			],
           "outArguments": [],
