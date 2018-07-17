@@ -17,7 +17,9 @@
         "execute": {
            "inArguments":[
 				{
-                    "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
+                    "emailAddress": "{{Contact.Attribute.CustomActivity.PhoneNumber}}"
+		     "FirstName": "{{Contact.Attribute.CustomActivity.FirstName}}"
+		      "LastName": "{{Contact.Attribute.CustomActivity.LastName}}"
                 }									
 			],
           "outArguments": [],
