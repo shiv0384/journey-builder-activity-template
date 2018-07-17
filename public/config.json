@@ -16,15 +16,17 @@
     "arguments": {
         "execute": {
            "inArguments":[
+		   		{ "Contact.Key":"{{Contact.Key}}" },
+                 
 				{
-				  "firstName": "{{Contact.Attribute.DE_NAME.FirstName}}"
+				  "firstName": "{{Contact.Attribute.Sms_data.FirstName}}"
 				},
 				{
-				  "lastName": "{{Contact.Attribute.DE_NAME.LastName}}"
+				  "lastName": "{{Contact.Attribute.Sms_data.LastName}}"
 				},
 				{
-				  "emailAddress": "{{Contact.Default.PhoneNumber}}"
-				}
+				  "phoneNumber": "{{Contact.Attribute.Sms_data.PhoneNumber}}"
+				},
 							
 			],
           "outArguments": [],
