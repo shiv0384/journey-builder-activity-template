@@ -66,21 +66,22 @@ define([
     }
 
     function save() {
-             payload['arguments'].execute.inArguments = [{
-            "tokens": authTokens,
-            { "firstName":"{{Contact.Attribute.SendSmsTestData.FirstName}}"}, 
-				{ "lastName":"{{Contact.Attribute.SendSmsTestData.LastName}}"}, 
-				{ "phoneNumber":"{{Contact.Attribute.SendSmsTestData.PhoneNumber}}"}
-        }];
-        
-        payload['metaData'].isConfigured = true;
+             payload['arguments'] = payload['arguments'] || {};
+		payload['arguments'].execute = payload['arguments'].execute || {};
 
-        console.log(JSON.stringify(payload));
-        connection.trigger('updateActivity', payload);
+		var idField = deFields.length > 0 ? $('#select-id-dropdown').val() : $('#select-id').val();
+
+		payload['arguments'].execute.inArguments = [{
+			'serviceCloudId': '{{Event.' + eventDefinitionKey + '.\"' + idField + '\"}}'
+		}];
+
+		payload['metaData'] = payload['metaData'] || {};
+		payload['metaData'].isConfigured = true;
+
+		console.log(JSON.stringify(payload));
+
+		connection.trigger('updateActivity', payload);
     }
-		connection.on('initActivity', initialize);
-	connection.on('clickedNext', onClickedNext);
-	connection.on('clickedBack', onClickedBack);
-	connection.on('gotoStep', onGotoStep);
+	
 
 });
