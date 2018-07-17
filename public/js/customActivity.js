@@ -29,6 +29,7 @@ define([
 	connection.trigger('ready')
 	connection.trigger('requestTokens');
 	connection.trigger('requestEndpoints');
+	}
 	function initialize(data) {
         console.log(data);
         if (data) {
