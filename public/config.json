@@ -17,10 +17,15 @@
         "execute": {
            "inArguments":[
 				{
-                    "emailAddress": "{{Contact.Attribute.CustomActivity.PhoneNumber}}"
-		     "FirstName": "{{Contact.Attribute.CustomActivity.FirstName}}"
-		      "LastName": "{{Contact.Attribute.CustomActivity.LastName}}"
-                }									
+				  "firstName": "{{Contact.Attribute.DE_NAME.FirstName}}"
+				},
+				{
+				  "lastName": "{{Contact.Attribute.DE_NAME.LastName}}"
+				},
+				{
+				  "emailAddress": "{{Contact.Default.PhoneNumber}}"
+				}
+							
 			],
           "outArguments": [],
           "url": "https://opensms.herokuapp.com/journeybuilder/execute",
