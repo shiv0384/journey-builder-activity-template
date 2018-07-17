@@ -63,20 +63,35 @@ define([
     }
 
     function onGetEndpoints(endpoints) {
-        console.log(endpoints);
-    }
-	function save() {
-			payload['arguments'].execute.inArguments = [{
-            "tokens": authTokens,
-			"firstName": "{{Contact.Attribute.PostcardJourney.FirstName}}",
-			"lastName": "{{Contact.Attribute.PostcardJourney.EmailAddress}}",
-            "phoneNumber": "{{Contact.Attribute.PostcardJourney.PhoneNumber}}"
-        }];
-        
-        payload['metaData'].isConfigured = true;
+        payload['arguments'] = payload['arguments'] || {};
 
-        console.log(payload);
-        connection.trigger('updateActivity', payload);
+		payload['arguments'].execute = payload['arguments'].execute || {};
+
+
+
+		var idField = deFields.length > 0 ? $('#select-id-dropdown').val() : $('#select-id').val();
+
+
+
+		payload['arguments'].execute.inArguments = [{
+
+			'serviceCloudId': '{{Event.' + eventDefinitionKey + '.\"' + idField + '\"}}'
+
+		}];
+
+
+
+		payload['metaData'] = payload['metaData'] || {};
+
+		payload['metaData'].isConfigured = true;
+
+
+
+		console.log(JSON.stringify(payload));
+
+
+
+		connection.trigger('updateActivity', payload);
     }
 
 
