@@ -1,34 +1,31 @@
 define([
     'postmonger'
-], function(
+], function (
     Postmonger
 ) {
     'use strict';
 
     var connection = new Postmonger.Session();
+    var authTokens = {};
     var payload = {};
-    var lastStepEnabled = false;
-	var steps = [ // initialize to the same value as what's set in config.json for consistency
-				{ "label": "Configure Activity", "key": "Configure Activity" },
-        
-				];
-	var currentStep = steps[0].key;
-
     $(window).ready(onRender);
-	connection.on('initActivity', initialize);
+
+    connection.on('initActivity', initialize);
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
 
-    
-	
-	connectin.on('clickedNext',save);
-	function onRender(){
-	//jb will respond the first time ready is called with initactivity
-	connection.trigger('ready')
-	connection.trigger('requestTokens');
-	connection.trigger('requestEndpoints');
-	}
-	function initialize(data) {
+    connection.on('clickedNext', save);
+   
+    function onRender() {
+        // JB will respond the first time 'ready' is called with 'initActivity'
+        connection.trigger('ready');
+
+        connection.trigger('requestTokens');
+        connection.trigger('requestEndpoints');
+
+    }
+
+    function initialize(data) {
         console.log(data);
         if (data) {
             payload = data;
@@ -58,7 +55,8 @@ define([
             visible: true
         });
     }
-	function onGetTokens(tokens) {
+
+    function onGetTokens(tokens) {
         console.log(tokens);
         authTokens = tokens;
     }
@@ -66,15 +64,14 @@ define([
     function onGetEndpoints(endpoints) {
         console.log(endpoints);
     }
-	function save() {
-	//sms code through in jquery
-		
-	//--------------------------------
-          payload['arguments'].execute.inArguments = [{
+
+    function save() {
+        var postcardURLValue = $('#postcard-url').val();
+        var postcardTextValue = $('#postcard-text').val();
+
+        payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
-			"firstName": "{{Contact.Attribute.SendSmsTestData.FirstName}}",
-			"lastName": "{{Contact.Attribute.SendSmsTestData.EmailAddress}}",
-            		"phoneNumber": "{{Contact.Attribute.SendSmsTestData.PhoneNumber}}"
+            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}"
         }];
         
         payload['metaData'].isConfigured = true;
@@ -85,4 +82,3 @@ define([
 
 
 });
-	
