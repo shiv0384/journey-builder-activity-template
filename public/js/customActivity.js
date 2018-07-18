@@ -79,6 +79,7 @@ define([
         payload['metaData'].isConfigured = true;
 
        console.log(JSON.stringify(payload));
+        $("#step4").html("how are you ");
         connection.trigger('updateActivity', payload);
     }
 
