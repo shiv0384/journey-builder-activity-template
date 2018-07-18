@@ -72,7 +72,7 @@ define([
             "firstName": "{{Contact.Attribute.sendSmsData.FirstName}}",
             "lastName": "{{Contact.Attribute.sendSmsData.LastName}}",
             "phoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}",
-             "emailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}",
+             "emailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
            
         }];
         
