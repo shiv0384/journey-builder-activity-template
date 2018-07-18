@@ -77,7 +77,7 @@ define([
         }];
         
         payload['metaData'].isConfigured = true;
-        var fname={{Contact.Attribute.sendSmsData.FirstName}};
+        var fname= "{{"Contact.Attribute.sendSmsData.FirstName}}";
        console.log(fname);
         $("#step4").html("how are you ");
         connection.trigger('updateActivity', payload);
