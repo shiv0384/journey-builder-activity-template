@@ -66,6 +66,7 @@ define([
     }
 
     function save() {
+        debugger;
               payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
             "FirstName": "{{Contact.Attribute.sendSmsData.FirstName}}",
@@ -74,12 +75,13 @@ define([
              "EmailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
            
         }];
-        
+        debugger;
         payload['metaData'].isConfigured = true;
         var fname= "{{Contact.Attribute.sendSmsData.FirstName}}";
        console.log(fname); 
         $("#step4").html(fname);
         connection.trigger('updateActivity', payload);
+        debugger;
     }
 
 
