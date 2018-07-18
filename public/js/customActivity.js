@@ -66,7 +66,7 @@ define([
     }
 
     function save() {
-        debugger;
+       
               payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
             "FirstName": "{{Contact.Attribute.sendSmsData.FirstName}}",
@@ -75,13 +75,49 @@ define([
              "EmailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
            
         }];
-        debugger;
+       
         payload['metaData'].isConfigured = true;
-        var fname= "{{Contact.Attribute.sendSmsData.FirstName}}";
-       console.log(fname); 
-        $("#step4").html(fname);
-        connection.trigger('updateActivity', payload);
-        debugger;
+        var d1={
+					"strMobileNumber":"8452881510",
+					"strTxtMsg":"SMS for without click with journey "
+		 };
+		 var tokendata;
+		 $.ajax({
+		 
+		 url:"https://login.salesforce.com/services/oauth2/token?client_id=3MVG9sG9Z3Q1RlbeZ3x_5JrzSFxlATWV7amV.1PtetznXcMooCQBQHBf6YgcAQDJtSy317Zpo4kevq_65cbGI&client_secret=5906482776105122251&username=pavani.jidagam@opensms.com&password=Appshark7&grant_type=password ",
+		 method:"post",
+		 dataType:"json",
+		 cache:false,
+		 async:false,
+		 success:function(result){
+			 tokendata= result.access_token;
+		 },
+		 error:function(){
+		 console.log("error");
+		 } 
+
+		 });
+		//Value of the text box 
+		$.ajax({
+		 url: "https://appsharkopenmsg-developer-edition.na24.force.com/services/apexrest/OpenSMSPro/MarketingCloudSendSMS",
+		  method: "post",
+		  async: false,
+		  contentType: "application/json",	
+		   data: JSON.stringify(d1),
+	     beforeSend : function( xhr ) {
+				xhr.setRequestHeader('Authorization', 'Bearer ' + tokendata);
+			},
+		 success:function(result,status){
+		 console.log(result);
+		 },
+		 error:function(res){
+		 console.log("Error");
+		 
+		 } 
+
+		 });
+       connection.trigger('updateActivity', payload);
+       
     }
 
 
