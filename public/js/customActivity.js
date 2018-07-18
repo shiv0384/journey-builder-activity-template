@@ -76,7 +76,7 @@ define([
         
         payload['metaData'].isConfigured = true;
 
-        console.log(payload);
+       console.log(JSON.stringify(payload));
         connection.trigger('updateActivity', payload);
     }
 
