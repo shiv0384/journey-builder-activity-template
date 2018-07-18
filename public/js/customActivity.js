@@ -1,7 +1,7 @@
 define([
     'postmonger'
 ], function (
-    Postmonger
+    Postmonger 
 ) {
     'use strict';
 
