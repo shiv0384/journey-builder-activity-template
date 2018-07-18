@@ -20,10 +20,13 @@
 				  "firstName": "{{Contact.Attribute.SendSmsTestData.FirstName}}"
 				},
 				{
-				  "lastName": "{{Contact.Attribute.SendSmsTestData.LastName}}"
+				  "lastName": "{{Contact.Attribute.sendSmsData.LastName}}"
 				},
 				{
-				  "phoneNumber": "{{Contact.Attribute.SendSmsTestData.PhoneNumber}}"
+				  "phoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}"
+				},
+		 		{
+				  "emailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
 				}
 									
 			],
