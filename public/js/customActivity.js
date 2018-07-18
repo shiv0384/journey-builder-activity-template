@@ -69,14 +69,15 @@ define([
         debugger;
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
-            "firstName": "{{Contact.Attribute.SendSmsTestData.FirstName}}",
-            "lastName": "{{Contact.Attribute.SendSmsTestData.LastName}}",
-            "phoneNumber": "{{Contact.Attribute.SendSmsTestData.PhoneNumber}}"
+            "firstName": "{{Contact.Attribute.sendSmsData.FirstName}}",
+            "lastName": "{{Contact.Attribute.sendSmsData.LastName}}",
+            "phoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}",
+            "emailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
         }];
         
         payload['metaData'].isConfigured = true;
 
-       alert(JSON.stringify(payload));
+       console.log(JSON.stringify(payload));
         connection.trigger('updateActivity', payload);
     }
 
