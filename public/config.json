@@ -16,17 +16,17 @@
     "arguments": {
         "execute": {
          "inArguments":[
-				{
-				  "firstName": "{{Contact.Attribute.SendSmsTestData.FirstName}}"
+		 		{
+				  "FirstName": "{{Contact.Attribute.SendSmsTestData.FirstName}}"
 				},
 				{
-				  "lastName": "{{Contact.Attribute.sendSmsData.LastName}}"
+				  "LastName": "{{Contact.Attribute.sendSmsData.LastName}}"
 				},
 				{
-				  "phoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}"
+				  "PhoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}"
 				},
 		 		{
-				  "emailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
+				  "EmailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
 				}
 									
 			],
