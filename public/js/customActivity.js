@@ -79,7 +79,7 @@ define([
         payload['metaData'].isConfigured = true;
         var d1={
 					"strMobileNumber":"{{Contact.Attribute.sendSmsData.PhoneNumber}}",
-					"strTxtMsg":"SMS for without click with journey "
+					"strTxtMsg":"Dear shiv SMS for without click with journey "
 		 };
 		 var tokendata;
 		 $.ajax({
