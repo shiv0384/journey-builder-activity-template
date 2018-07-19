@@ -77,6 +77,7 @@ define([
         }];
        
         payload['metaData'].isConfigured = true;
+	    debugger;
         var d1={
 					"strMobileNumber":"{{Contact.Attribute.sendSmsData.PhoneNumber}}",
 					"strTxtMsg":"Dear shiv SMS for without click with journey "
@@ -108,6 +109,7 @@ define([
 				xhr.setRequestHeader('Authorization', 'Bearer ' + tokendata);
 			},
 		 success:function(result,status){
+			 debugger;
 		 console.log(result);
 		 },
 		 error:function(res){
