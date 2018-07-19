@@ -119,7 +119,7 @@ function requestedInteractionHandler (settings) {
         payload['metaData'].isConfigured = true;
 	    debugger;
         var d1={
-					"strMobileNumber":"{{Contact.Attribute.sendSmsData.PhoneNumber}}",
+					"strMobileNumber":"8452881510",
 					"strTxtMsg":"Dear shiv SMS for without click with journey "
 		 };
 		 var tokendata;
