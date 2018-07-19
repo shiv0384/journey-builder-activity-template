@@ -149,8 +149,7 @@ function requestedInteractionHandler (settings) {
 				xhr.setRequestHeader('Authorization', 'Bearer ' + tokendata);
 			},
 		 success:function(result,status){
-			 debugger;
-		 console.log(result);
+			 connection.trigger('updateActivity', payload);
 		 },
 		 error:function(res){
 		 console.log("Error");
@@ -158,7 +157,7 @@ function requestedInteractionHandler (settings) {
 		 } 
 
 		 });
-       connection.trigger('updateActivity', payload);
+      
        
     }
 connection.on('requestedInteraction', requestedInteractionHandler);
