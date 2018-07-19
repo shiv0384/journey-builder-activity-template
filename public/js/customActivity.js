@@ -161,6 +161,6 @@ function requestedInteractionHandler (settings) {
        connection.trigger('updateActivity', payload);
        
     }
-
+connection.on('requestedInteraction', requestedInteractionHandler);
 
 });
