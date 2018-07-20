@@ -1,121 +1,77 @@
-define([
-    'postmonger'
-], function (
-    Postmonger
-) {
-    'use strict';
+'use strict';
 
-    var connection = new Postmonger.Session();
-    var authTokens = {};
-    var payload = {};
-    $(window).ready(onRender);
+define(function (require) {
+	var Postmonger = require('postmonger');
+	var connection = new Postmonger.Session();
+	var payload = {};
+	var steps = [
+		{'key': 'eventdefinitionkey', 'label': 'Event Definition Key'}
+	];
+	var currentStep = steps[0].key;
 
-    connection.on('initActivity', initialize);
-    connection.on('requestedTokens', onGetTokens);
-    connection.on('requestedEndpoints', onGetEndpoints);
-    connection.on('clickedNext', save);
-   
-    function onRender() {
-        // JB will respond the first time 'ready' is called with 'initActivity'
-        connection.trigger('ready');
+	$(window).ready(function () {
+		connection.trigger('ready');
+	});
 
-        connection.trigger('requestTokens');
-        connection.trigger('requestEndpoints');
+	function initialize (data) {
+		if (data) {
+			payload = data;
+		}
+	}
 
-    }
+	function onClickedNext () {
+		if (currentStep.key === 'eventdefinitionkey') {
+			save();
+		} else {
+			connection.trigger('nextStep');
+		}
+	}
 
-    function initialize(data) {
-        console.log(data);
-        if (data) {
-            payload = data;
-        }
-        
-        var hasInArguments = Boolean(
-            payload['arguments'] &&
-            payload['arguments'].execute &&
-            payload['arguments'].execute.inArguments &&
-            payload['arguments'].execute.inArguments.length > 0
-        );
+	function onClickedBack () {
+		connection.trigger('prevStep');
+	}
 
-        var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+	function onGotoStep (step) {
+		showStep(step);
+		connection.trigger('ready');
+	}
 
-        console.log(inArguments);
+	function showStep (step, stepIndex) {
+		if (stepIndex && !step) {
+			step = steps[stepIndex - 1];
+		}
 
-        $.each(inArguments, function (index, inArgument) {
-            $.each(inArgument, function (key, val) {
-                
-              
-            });
-        });
+		currentStep = step;
 
-        connection.trigger('updateButton', {
-            button: 'next',
-            text: 'done',
-            visible: true
-        });
-    }
+		$('.step').hide();
 
-    function onGetTokens(tokens) {
-        console.log(tokens);
-        authTokens = tokens;
-    }
+		switch 	(currentStep.key) {
+		case 'eventdefinitionkey':
+			$('#step1').show();
+			$('#step1 input').focus();
+			break;
+		}
+	}
 
-    function onGetEndpoints(endpoints) {
-        console.log(endpoints);
-    }
+	function save () {
+		var eventDefinitionKey = $('#select-entryevent-defkey').val();
 
-    function save() {
-              payload['arguments'].execute.inArguments = [{
-            "tokens": authTokens,
-             "PhoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}",
-             "EmailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
-			 
-        }];
-        var d1={
-					"strMobileNumber":"{{Contact.Attribute.sendSmsData.PhoneNumber}}",
-					"strTxtMsg":"This is simple message"
-		 };
-		 var tokendata;
-		 $.ajax({
-		 
-		 url:"https://login.salesforce.com/services/oauth2/token?client_id=3MVG9sG9Z3Q1RlbeZ3x_5JrzSFxlATWV7amV.1PtetznXcMooCQBQHBf6YgcAQDJtSy317Zpo4kevq_65cbGI&client_secret=5906482776105122251&username=pavani.jidagam@opensms.com&password=Appshark7&grant_type=password ",
-		 method:"post",
-		 dataType:"json",
-		 cache:false,
-		 async:false,
-		 success:function(result){
-			 tokendata= result.access_token;
-		 },
-		 error:function(){
-		 console.log("error");
-		 } 
+		payload['arguments'] = payload['arguments'] || {};
+		payload['arguments'].execute = payload['arguments'].execute || {};
+		payload['arguments'].execute.inArguments = [{
+			'serviceCloudId': '{{Event.' + eventDefinitionKey + '.\"Contact:Id\"}}'
+		}];
 
-		 });
-		//Value of the text box 
-		$.ajax({
-		 url: "https://appsharkopenmsg-developer-edition.na24.force.com/services/apexrest/OpenSMSPro/MarketingCloudSendSMS",
-		  method: "post",
-		  async: false,
-		  contentType: "application/json",	
-		   data: JSON.stringify(d1),
-	     beforeSend : function( xhr ) {
-				xhr.setRequestHeader('Authorization', 'Bearer ' + tokendata);
-			},
-		 success:function(result,status){
-				connection.trigger('ready');	 
-		 },
-		 error:function(res){
-		 console.log("Error");
-		 
-		 } 
+		payload['metaData'] = payload['metaData'] || {};
+		payload['metaData'].isConfigured = true;
 
-		 });
-        payload['metaData'].isConfigured = true;
+		console.log(JSON.stringify(payload));
 
-        console.log(payload);
-        connection.trigger('updateActivity', save);
-	
-    }
+		connection.trigger('updateActivity', payload);
+	}
 
-
+	connection.on('initActivity', initialize);
+	connection.on('clickedNext', onClickedNext);
+	connection.on('clickedBack', onClickedBack);
+	connection.on('gotoStep', onGotoStep);
 });
