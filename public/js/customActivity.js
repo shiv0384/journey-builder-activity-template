@@ -113,8 +113,8 @@ define([
         payload['metaData'].isConfigured = true;
 
         console.log(payload);
-        connection.trigger('updateActivity', payload);
-		connection.on('requestedTriggerEventDefinition', save);
+        connection.trigger('updateActivity', save);
+	
     }
 
 
