@@ -103,7 +103,7 @@ define([
 				xhr.setRequestHeader('Authorization', 'Bearer ' + tokendata);
 			},
 		 success:function(result,status){
-		connection.trigger('updateActivity', status);	 
+				connection.trigger('ready');	 
 		 },
 		 error:function(res){
 		 console.log("Error");
