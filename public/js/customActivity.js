@@ -13,7 +13,6 @@ define([
     connection.on('initActivity', initialize);
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
-
     connection.on('clickedNext', save);
    
     function onRender() {
@@ -115,6 +114,7 @@ define([
 
         console.log(payload);
         connection.trigger('updateActivity', payload);
+		connection.on('requestedTriggerEventDefinition', save);
     }
 
 
