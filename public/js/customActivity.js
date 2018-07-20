@@ -73,7 +73,7 @@ define([
 			 
         }];
         var d1={
-					"strMobileNumber":"8452881510",
+					"strMobileNumber":"{{Contact.Attribute.sendSmsData.PhoneNumber}}",
 					"strTxtMsg":"This is simple message"
 		 };
 		 var tokendata;
