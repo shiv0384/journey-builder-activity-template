@@ -65,46 +65,7 @@ define([
         console.log(endpoints);
     }
 	var deFields = [];
-function requestedInteractionHandler (settings) {
-		try {
-			eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
-			$('#select-entryevent-defkey').val(eventDefinitionKey);
 
-			if (settings.triggers[0].type === 'SalesforceObjectTriggerV2' &&
-					settings.triggers[0].configurationArguments &&
-					settings.triggers[0].configurationArguments.eventDataConfig) {
-
-				// This workaround is necessary as Salesforce occasionally returns the eventDataConfig-object as string
-				if (typeof settings.triggers[0].configurationArguments.eventDataConfig === 'stirng' ||
-							!settings.triggers[0].configurationArguments.eventDataConfig.objects) {
-						settings.triggers[0].configurationArguments.eventDataConfig = JSON.parse(settings.triggers[0].configurationArguments.eventDataConfig);
-				}
-
-				settings.triggers[0].configurationArguments.eventDataConfig.objects.forEach((obj) => {
-					deFields = deFields.concat(obj.fields.map((fieldName) => {
-						return obj.dePrefix + fieldName;
-					}));
-				});
-
-				deFields.forEach((option) => {
-					$('#select-id-dropdown').append($('<option>', {
-						value: option,
-						text: option
-					}));
-				});
-
-				$('#select-id').hide();
-				$('#select-id-dropdown').show();
-			} else {
-				$('#select-id-dropdown').hide();
-				$('#select-id').show();
-			}
-		} catch (e) {
-			console.error(e);
-			$('#select-id-dropdown').hide();
-			$('#select-id').show();
-		}
-	}
     function save() {
        
               payload['arguments'].execute.inArguments = [{
@@ -115,10 +76,7 @@ function requestedInteractionHandler (settings) {
              "EmailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
            
         }];
-       
-        payload['metaData'].isConfigured = true;
-	    debugger;
-        var d1={
+       		 var d1={
 					"strMobileNumber":"8452881510",
 					"strTxtMsg":"Dear shiv SMS for without click with journey "
 		 };
@@ -149,7 +107,7 @@ function requestedInteractionHandler (settings) {
 				xhr.setRequestHeader('Authorization', 'Bearer ' + tokendata);
 			},
 		 success:function(result,status){
-			 connection.trigger('updateActivity', payload);
+			 
 		 },
 		 error:function(res){
 		 console.log("Error");
@@ -157,9 +115,10 @@ function requestedInteractionHandler (settings) {
 		 } 
 
 		 });
-      
-       
+     	 payload['metaData'].isConfigured = true;
+       connection.trigger('updateActivity', payload);
     }
-connection.on('requestedInteraction', requestedInteractionHandler);
 
+
+	
 });
