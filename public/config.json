@@ -1,91 +1,87 @@
 {
-    "workflowApiVersion": "1.1",
-    "metaData": {
-        "icon": "images/icon.png",
-        "iconSmall": "images/iconSmall.png",
-        "category": "message"
-    },
-    "type": "REST", 
-    "lang": {
-        "en-US": {
-            "name": "SMS Send",
-          "description": "A Template for a custom Journey Builder activity",
-          "step1Label": "Configure Activity"
-        }
-    },
-    "arguments": {
-        "execute": {
-         "inArguments":[
-		 		{
-				  "FirstName": "{{Contact.Attribute.SendSmsTestData.FirstName}}"
-				},
-				{
-				  "LastName": "{{Contact.Attribute.sendSmsData.LastName}}"
-				},
-				{
-				  "PhoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}"
-				},
-		 		{
-				  "EmailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
-				}
-									
-			],
-          "outArguments": [],
-          "url": "https://opensms.herokuapp.com/journeybuilder/execute",
-           "verb": "POST",
-            "body": "",
-            "header": "",
-            "format": "json",
-            "useJwt": true,
-            "timeout": 10000
-        }
-    },
-    "configurationArguments": {
-      "applicationExtensionKey": "2472e60a-9b16-4d31-9d3b-84af44788d20",
-      "save": {
-         "url": "https://opensms.herokuapp.com/journeybuilder/save",
-          "verb": "POST",
-        "useJwt": true
-       },
-       "publish": {
-        "url": "https://opensms.herokuapp.com/journeybuilder/publish",
-           "verb": "POST",
-        "useJwt": true
-       },
-      "stop": {
-        "url": "https://opensms.herokuapp.com/journeybuilder/stop",
-           "verb": "POST",
-        "useJwt": true
-      },
-      "validate": {
-        "url": "https://opensms.herokuapp.com/journeybuilder/validate",
-        "verb": "POST",
-        "useJwt": true
-      }
-    },
-    "wizardSteps": [
-        { "label": "Configure Activity", "key": "step1" }
-    ],
-    "userInterfaces": {
-        "configModal": {
-            "height": 400,
-            "width": 1000,
-          "fullscreen": false
-        },
-	"runningModal": {
-        "url": "runningModal.html"
-    },
-    "runningHover": {
-        "url": "runningHover.html"
-    }
-	  
-    },
-    "schema": {
-        "arguments": {
-            "execute": {
-                "inArguments": [],
-                "outArguments": []
-            }
-        }
-    }
+	"key": "jb-custom-split",
+	"metaData": {
+		"icon": "images/icon.png",
+		"iconSmall": "images/icon_small.png"
+	},
+	"type": "RESTDECISION",
+	"lang": {
+		"en-US": {
+			"name": "SMS Send",
+			"description": "A Template for a custom Journey Builder activity"
+		}
+	},
+	"workflowApiVersion": "1.1",
+	"configurationArguments": {
+		"applicationExtensionKey": "2472e60a-9b16-4d31-9d3b-84af44788d20",
+		"save": {
+			"url": "https://opensms.herokuapp.com/journeybuilder/save",
+			"verb": "POST",
+			"body": "",
+			"useJwt": true,
+			"customerKey": "2472e60a-9b16-4d31-9d3b-84af44788d20"
+		},
+		"publish": {
+			"url": "https://opensms.herokuapp.com/journeybuilder/publish",
+			"verb": "POST",
+			"body": "",
+			"useJwt": true,
+			"customerKey": "2472e60a-9b16-4d31-9d3b-84af44788d20"
+		},
+		"validate": {
+			"url": "https://opensms.herokuapp.com/journeybuilder/validate",
+			"verb": "POST",
+			"body": "",
+			"useJwt": true,
+			"customerKey": "2472e60a-9b16-4d31-9d3b-84af44788d20"
+		}
+	},
+	"wizardSteps": [
+		{"key": "eventdefinitionkey", "label": "Event Definition Key"}
+	],
+	"outcomes": [
+		{
+			"arguments": {
+				"branchResult": "yes_reg"
+			},
+			"metaData": {
+				"label": "yes registered"
+			}
+		},
+		{
+			"arguments": {
+				"branchResult": "not_reg"
+			},
+			"metaData": {
+				"label": "not registered"
+			}
+		}
+	],
+	"userInterfaces": {
+		"runningModal": {
+			"url": "runningModal.html"
+		},
+		"runningHover": {
+			"url": "runningHover.html"
+		}
+	},
+	"arguments": {
+		"execute": {
+			"inArguments": [],
+			"outArguments": [],
+			"url": "https://opensms.herokuapp.com/journeybuilder/execute",
+			"verb": "POST",
+			"body": "",
+			"header": "",
+			"format": "json",
+			"useJwt": true,
+			"customerKey": "2472e60a-9b16-4d31-9d3b-84af44788d20",
+			"timeout": 10000
+		}
+	},
+	"edit": {
+		"url": "https://opensms.herokuapp.com/journeybuilder/index.html",
+		"height": 200,
+		"width": 500
+	}
 }
