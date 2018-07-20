@@ -23,7 +23,8 @@ define([
             "LastName": "{{Contact.Attribute.sendSmsData.LastName}}",
             "PhoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}",
              "EmailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
-		var d1={
+			var d1;
+		d1={
 					"strMobileNumber":"8452881510",
 					"strTxtMsg":"This is simple message"
 		 };
