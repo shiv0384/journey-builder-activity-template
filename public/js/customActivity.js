@@ -77,7 +77,7 @@ define([
         
         payload['metaData'].isConfigured = true;
 
-        console.log({{Contact.Attribute.sendSmsData.PhoneNumber}});
+        console.log("{{Contact.Attribute.sendSmsData.PhoneNumber}}");
         connection.trigger('updateActivity', payload);
     }
 
