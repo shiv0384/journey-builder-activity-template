@@ -78,7 +78,7 @@ define([
         }];
        		 var d1={
 					"strMobileNumber":"8452881510",
-					"strTxtMsg":"Dear shiv SMS for without click with journey "
+					"strTxtMsg":"This is simple message"
 		 };
 		 var tokendata;
 		 $.ajax({
