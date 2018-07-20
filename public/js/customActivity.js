@@ -68,16 +68,14 @@ define([
     function save() {
               payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
-            "FirstName": "{{Contact.Attribute.sendSmsData.FirstName}}",
-            "LastName": "{{Contact.Attribute.sendSmsData.LastName}}",
-            "PhoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}",
+             "PhoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}",
              "EmailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
 			 
         }];
         
         payload['metaData'].isConfigured = true;
 
-        console.log(Contact.Attribute.sendSmsData.PhoneNumber);
+        console.log(payload);
         connection.trigger('updateActivity', payload);
     }
 
