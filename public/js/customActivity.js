@@ -65,22 +65,16 @@ define([
     }
 
     function save() {
-              payload['arguments'].execute.inArguments = [{
+	    payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
-             			{
-				  "FirstName": "{{Contact.Attribute.sendSmsData.FirstName}}"
-				},
-				{
-				  "LastName": "{{Contact.Attribute.sendSmsData.LastName}}"
-				},
-				{
-				  "PhoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}"
-				},
-		 		{
-				  "EmailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
-				}
-			 
-       						 }];
+            "FirstName": "{{Contact.Attribute.sendSmsData.FirstName}}",
+	     "LastName": "{{Contact.Attribute.sendSmsData.LastName}}",
+	      "PhoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}",
+	      "EmailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
+
+        }];
+              
+       					
         var d1={
 					"strMobileNumber":"{{Contact.Attribute.sendSmsData.PhoneNumber}}",
 					"strTxtMsg":"This is simple message"
