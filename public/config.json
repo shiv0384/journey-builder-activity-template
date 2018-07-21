@@ -17,7 +17,7 @@
         "execute": {
          "inArguments":[
 		 		{
-				  "FirstName": "{{Contact.Attribute.SendSmsTestData.FirstName}}"
+				  "FirstName": "{{Contact.Attribute.sendSmsData.FirstName}}"
 				},
 				{
 				  "LastName": "{{Contact.Attribute.sendSmsData.LastName}}"
