@@ -65,6 +65,7 @@ define([
     }
 
     function save() {
+	    debugger;
 	    payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
             "FirstName": "{{Contact.Attribute.sendSmsData.FirstName}}",
