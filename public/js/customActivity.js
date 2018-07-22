@@ -74,11 +74,12 @@ define([
 
         }];
               
-       					
+       		debugger;			
         var d1={
 					"strMobileNumber":"{{Contact.Attribute.sendSmsData.PhoneNumber}}",
 					"strTxtMsg":"This is simple message"
 		 };
+	         debugger;
 		 var tokendata;
 		 $.ajax({
 		 
