@@ -80,7 +80,7 @@ define([
 				debugger;			
 				var phonemsgdata={
 				"strMobileNumber":"{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}",
-				"strTxtMsg":"This is simple message"
+				"strTxtMsg":"Test message for sms"
 				};
 				debugger;
 				var tokendata;
