@@ -78,7 +78,7 @@ define([
 
 				debugger;			
 				var phonemsgdata={
-				"strMobileNumber":"{{Contact.Attribute.sendSmsData.PhoneNumber}}",
+				"strMobileNumber":"8452881510",
 				"strTxtMsg":"This is simple message"
 				};
 				debugger;
