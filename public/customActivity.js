@@ -1,86 +1,128 @@
-define([
-    'postmonger'
-], function (
-    Postmonger 
-) {
-    'use strict';
+'use strict';
 
-    var connection = new Postmonger.Session();
-    var authTokens = {};
-    var payload = {};
-    $(window).ready(onRender);
+define(function (require) {
+	var Postmonger = require('postmonger');
+	var connection = new Postmonger.Session();
+	var payload = {};
+	var steps = [
+		{'key': 'eventdefinitionkey', 'label': 'Event Definition Key'},
+		{'key': 'idselection', 'label': 'ID Selection'}
+	];
+	var currentStep = steps[0].key;
+	var eventDefinitionKey = '';
+	var deFields = [];
 
-    connection.on('initActivity', initialize);
-    connection.on('requestedTokens', onGetTokens);
-    connection.on('requestedEndpoints', onGetEndpoints);
+	$(window).ready(function () {
+		connection.trigger('ready');
+		connection.trigger('requestInteraction');
+	});
 
-    connection.on('clickedNext', save);
-   
-    function onRender() {
-        // JB will respond the first time 'ready' is called with 'initActivity'
-        connection.trigger('ready');
+	function initialize (data) {
+		if (data) {
+			payload = data;
+		}
+	}
 
-        connection.trigger('requestTokens');
-        connection.trigger('requestEndpoints');
- 
-    }
+	function onClickedNext () {
+		if (currentStep.key === 'idselection') {
+			save();
+		} else {
+			connection.trigger('nextStep');
+		}
+	}
 
-    function initialize(data) {
-        console.log(data);
-        if (data) {
-            payload = data;
-        }
-        
-        var hasInArguments = Boolean(
-            payload['arguments'] &&
-            payload['arguments'].execute &&
-            payload['arguments'].execute.inArguments &&
-            payload['arguments'].execute.inArguments.length > 0
-        );
+	function onClickedBack () {
+		connection.trigger('prevStep');
+	}
 
-        var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+	function onGotoStep (step) {
+		showStep(step);
+		connection.trigger('ready');
+	}
 
-        console.log(inArguments);
+	function showStep (step, stepIndex) {
+		if (stepIndex && !step) {
+			step = steps[stepIndex - 1];
+		}
 
-        $.each(inArguments, function (index, inArgument) {
-            $.each(inArgument, function (key, val) {
-                
-              
-            });
-        });
+		currentStep = step;
 
-        connection.trigger('updateButton', {
-            button: 'next',
-            text: 'done',
-            visible: true
-        });
-    }
+		$('.step').hide();
 
-    function onGetTokens(tokens) {
-        console.log(tokens);
-        authTokens = tokens;
-    }
+		switch (currentStep.key) {
+		case 'eventdefinitionkey':
+			$('#step1').show();
+			$('#step1 input').focus();
+			break;
+		case 'idselection':
+			$('#step2').show();
+			$('#step2 input').focus();
+			break;
+		}
+	}
 
-    function onGetEndpoints(endpoints) {
-        console.log(endpoints);
-    }
+	function requestedInteractionHandler (settings) {
+		try {
+			eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
+			$('#select-entryevent-defkey').val(eventDefinitionKey);
 
-    function save() {
-        debugger;
-        payload['arguments'].execute.inArguments = [{
-            "tokens": authTokens,
-            "firstName": "{{Contact.Attribute.sendSmsData.FirstName}}",
-            "lastName": "{{Contact.Attribute.sendSmsData.LastName}}",
-            "phoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}",
-             "emailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}",
-           
-        }];
-        
-        payload['metaData'].isConfigured = true;
+			if (settings.triggers[0].type === 'SalesforceObjectTriggerV2' &&
+					settings.triggers[0].configurationArguments &&
+					settings.triggers[0].configurationArguments.eventDataConfig) {
 
-       console.log(JSON.stringify(payload));
-        connection.trigger('updateActivity', payload);
-    }
+				// This workaround is necessary as Salesforce occasionally returns the eventDataConfig-object as string
+				if (typeof settings.triggers[0].configurationArguments.eventDataConfig === 'stirng' ||
+							!settings.triggers[0].configurationArguments.eventDataConfig.objects) {
+						settings.triggers[0].configurationArguments.eventDataConfig = JSON.parse(settings.triggers[0].configurationArguments.eventDataConfig);
+				}
 
+				settings.triggers[0].configurationArguments.eventDataConfig.objects.forEach((obj) => {
+					deFields = deFields.concat(obj.fields.map((fieldName) => {
+						return obj.dePrefix + fieldName;
+					}));
+				});
 
+				deFields.forEach((option) => {
+					$('#select-id-dropdown').append($('<option>', {
+						value: option,
+						text: option
+					}));
+				});
+
+				$('#select-id').hide();
+				$('#select-id-dropdown').show();
+			} else {
+				$('#select-id-dropdown').hide();
+				$('#select-id').show();
+			}
+		} catch (e) {
+			console.error(e);
+			$('#select-id-dropdown').hide();
+			$('#select-id').show();
+		}
+	}
+
+	function save () {
+		payload['arguments'] = payload['arguments'] || {};
+		payload['arguments'].execute = payload['arguments'].execute || {};
+
+		var idField = deFields.length > 0 ? $('#select-id-dropdown').val() : $('#select-id').val();
+
+		payload['arguments'].execute.inArguments = [{
+			'serviceCloudId': '{{Event.' + eventDefinitionKey + '.\"' + idField + '\"}}'
+		}];
+
+		payload['metaData'] = payload['metaData'] || {};
+		payload['metaData'].isConfigured = true;
+
+		console.log(JSON.stringify(payload));
+
+		connection.trigger('updateActivity', payload);
+	}
+
+	connection.on('initActivity', initialize);
+	connection.on('clickedNext', onClickedNext);
+	connection.on('clickedBack', onClickedBack);
+	connection.on('gotoStep', onGotoStep);
+	connection.on('requestedInteraction', requestedInteractionHandler);
 });
