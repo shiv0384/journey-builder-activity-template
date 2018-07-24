@@ -17,16 +17,16 @@
         "execute": {
          "inArguments":[
 		 		{
-				  "FirstName": "{{APIEvent-239ed1fc-18e1-f97a-feb9-e4a250f4d964.FirstName}}"
+				  "FirstName": "{{Event.ContactEvent-e9b1a77d-1a89-16de-e41c-cdee11b220d0.FirstName}}"
 				},
 				{
-				  "LastName": "{{APIEvent-239ed1fc-18e1-f97a-feb9-e4a250f4d964.LastName}}"
+				  "LastName": "{{Event.ContactEvent-e9b1a77d-1a89-16de-e41c-cdee11b220d0.LastName}}"
 				},
 				{
-				  "PhoneNumber": "{{APIEvent-239ed1fc-18e1-f97a-feb9-e4a250f4d964.PhoneNumber}}"
+				  "PhoneNumber": "{{Event.ContactEvent-e9b1a77d-1a89-16de-e41c-cdee11b220d0.PhoneNumber}}"
 				},
 		 		{
-				  "EmailAddress": "{{APIEvent-239ed1fc-18e1-f97a-feb9-e4a250f4d964.EmailAddress}}"
+				  "EmailAddress": "{{Event.ContactEvent-e9b1a77d-1a89-16de-e41c-cdee11b220d0.EmailAddress}}"
 				}
 									
 			],
