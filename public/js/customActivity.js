@@ -70,16 +70,16 @@ define([
 				debugger;
 				payload['arguments'].execute.inArguments = [{
 				"tokens": authTokens,
-				"FirstName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.FirstName}}",
-				"LastName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.LastName}}",
-				"PhoneNumber": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}",
-				"EmailAddress": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.EmailAddress}}"
+				"FirstName": "{{Contact.Default.FirstName}}",
+				"LastName": "{{Contact.Default.LastName}}",
+				"PhoneNumber": "{{Contact.Default.PhoneNumber}}",
+				"EmailAddress": "{{Contact.Default.EmailAddress}}"
 
 				}];
 
 				debugger;			
 				var phonemsgdata={
-				"strMobileNumber":"{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}",
+				"strMobileNumber":"{{Contact.Default.PhoneNumber}}",
 				"strTxtMsg":"Test message for sms"
 				};
 				debugger;
