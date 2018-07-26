@@ -17,10 +17,10 @@
         "execute": {
          "inArguments":[
 		 		{
-				  "FirstName": "{{Contact.Default.FirstName}}"
+				  "FirstName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.FirstName}}"
 				},
 				{
-				  "LastName": "{{Contact.Default.LastName}}"
+				  "LastName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.LastName}}"
 				},
 				{
 				  "PhoneNumber": "{{Contact.Default.PhoneNumber}}"
@@ -31,7 +31,7 @@
 									
 			],
           "outArguments": [],
-          "url": "https://opensms.herokuapp.com/journeybuilder/execute",
+          "url": "https://opensms.herokuapp.com/execute",
            "verb": "POST",
             "body": "",
             "header": "",
@@ -43,22 +43,22 @@
     "configurationArguments": {
       "applicationExtensionKey": "2472e60a-9b16-4d31-9d3b-84af44788d20",
       "save": {
-         "url": "https://opensms.herokuapp.com/journeybuilder/save",
+         "url": "https://opensms.herokuapp.com/save",
           "verb": "POST",
         "useJwt": false
        },
        "publish": {
-        "url": "https://opensms.herokuapp.com/journeybuilder/publish",
+        "url": "https://opensms.herokuapp.com/publish",
            "verb": "POST",
         "useJwt": false
        },
       "stop": {
-        "url": "https://opensms.herokuapp.com/journeybuilder/stop",
+        "url": "https://opensms.herokuapp.com/stop",
            "verb": "POST",
         "useJwt": false
       },
       "validate": {
-        "url": "https://opensms.herokuapp.com/journeybuilder/validate",
+        "url": "https://opensms.herokuapp.com/validate",
         "verb": "POST",
         "useJwt": false
       }
