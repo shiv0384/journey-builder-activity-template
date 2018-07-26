@@ -1,96 +1,72 @@
 {
     "workflowApiVersion": "1.1",
     "metaData": {
-       "icon": "images/sms.png",
-	 "iconSmall": "images/iconSmall.png",
-       "category": "message"
+        "icon": "images/icon.png",
+        "iconSmall": "images/iconSmall.png",
+        "category": "message"
     },
     "type": "REST",
     "lang": {
-       "en-US": {
-           "name": "SMS Send",
-           "description": "An example REST activity using workflow API v1.1 format."
-       }
+        "en-US": {
+            "name": "Template",
+          "description": "A Template for a custom Journey Builder activity",
+          "step1Label": "Configure Activity"
+        }
     },
     "arguments": {
         "execute": {
-            "inArguments": [
-                		{
-				  "FirstName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.FirstName}}"
-				},
-				{
-				  "LastName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.LastName}}"
-				},
-				{
-				  "PhoneNumber": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}"
-				},
-		 		{
-				  "EmailAddress": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.EmailAddress}}"
-				}
-            ],
-            "outArguments": [
-                {
-                    "foundSignupDate": ""
-                }
-            ],
-            "url": "https://opensms.herokuapp.com/journeybuilder/execute"
+           "inArguments":[
+		   		 "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
+							
+			],
+          "outArguments": [],
+          "url": "https://opensms.herokuapp.com/journeybuilder/execute",
+           "verb": "POST",
+            "body": "",
+            "header": "",
+            "format": "json",
+            "useJwt": true,
+            "timeout": 10000
         }
     },
     "configurationArguments": {
-       "save": {
-           "url": "https://opensms.herokuapp.com/journeybuilder/save"
+      "applicationExtensionKey": "cddaba45-88a0-4d81-ab16-c502a730d112",
+      "save": {
+         "url": "https://opensms.herokuapp.com/journeybuilder/save",
+          "verb": "POST",
+        "useJwt": true
        },
        "publish": {
-           "url": "https://opensms.herokuapp.com/journeybuilder/publish"
+        "url": "https://opensms.herokuapp.com/journeybuilder/publish",
+           "verb": "POST",
+        "useJwt": true
        },
-       "validate": {
-           "url": "https://opensms.herokuapp.com/journeybuilder/validate"
-       },
-       "stop": {
-           "url": "https://opensms.herokuapp.com/journeybuilder/stop"
-       }
+      "stop": {
+        "url": "https://opensms.herokuapp.com/journeybuilder/stop",
+           "verb": "POST",
+        "useJwt": true
+      },
+      "validate": {
+        "url": "https://opensms.herokuapp.com/journeybuilder/validate",
+        "verb": "POST",
+        "useJwt": true
+      }
     },
     "wizardSteps": [
-       { "label": "Step 1", "key": "step1" },
-       { "label": "Step 2", "key": "step2" },
-       { "label": "Step 3", "key": "step3" },
-       { "label": "Step 4", "key": "step4", "active": false }
+        { "label": "Configure Activity", "key": "step1" }
     ],
     "userInterfaces": {
-       "configModal": {
-           "height": 200,
-           "width": 300,
-           "fullscreen": true
-       }
+        "configModal": {
+            "height": 400,
+            "width": 1000,
+          "fullscreen": false
+        }
     },
     "schema": {
         "arguments": {
             "execute": {
-                "inArguments": [
-                    {
-                        "phoneNumber": {
-                            "dataType": "Phone",
-                            "isNullable": false,
-                            "direction": "in"   
-                        }
-                    },
-                    {
-                        "emailAddress": {
-                            "dataType": "Email",
-                            "isNullable": false,
-                            "direction": "in"
-                        }
-                    }
-                ],
-                "outArguments": [
-                    {
-                        "foundSignupDate": {
-                            "dataType": "Date",
-                            "direction": "out",
-                            "access": "visible"
-                        }
-                    }
-                ]
+                "inArguments": [],
+                "outArguments": []
             }
         }
     }
