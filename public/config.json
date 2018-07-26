@@ -17,16 +17,16 @@
         "execute": {
          "inArguments":[
 		 		{
-				  "FirstName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.FirstName}}"
+				  "FirstName": "{{Contact.Default.FirstName}}"
 				},
 				{
-				  "LastName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.LastName}}"
+				  "LastName": "{{Contact.Default.LastName}}"
 				},
 				{
-				  "PhoneNumber": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}"
+				  "PhoneNumber": "{{Contact.Default.PhoneNumber}}"
 				},
 		 		{ 
-				  "EmailAddress": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.EmailAddress}}"
+				  "EmailAddress": "{{Contact.Default.EmailAddress}}"
 				}
 									
 			],
