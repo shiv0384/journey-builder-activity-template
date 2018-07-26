@@ -65,7 +65,7 @@ define([
         console.log(endpoints);
     }
 
-           /*function save()
+           function save()
 		   {
 				debugger;
 				payload['arguments'].execute.inArguments = [{
@@ -121,7 +121,7 @@ define([
 				console.log(payload);
 				connection.trigger('updateActivity', payload);
 	
-    }*/
+    }
 	
 
 
