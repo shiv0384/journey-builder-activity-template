@@ -31,7 +31,7 @@
 									
 			],
           "outArguments": [],
-          "url": "https://opensms.herokuapp.com/activity/execute",
+          "url": "https://opensms.herokuapp.com/execute",
            "verb": "POST",
             "body": "",
             "header": "",
@@ -43,22 +43,22 @@
     "configurationArguments": {
       "applicationExtensionKey": "2472e60a-9b16-4d31-9d3b-84af44788d20",
       "save": {
-         "url": "https://opensms.herokuapp.com/activity/save",
+         "url": "https://opensms.herokuapp.com/save",
           "verb": "POST",
         "useJwt": false
        },
        "publish": {
-        "url": "https://opensms.herokuapp.com/activity/publish",
+        "url": "https://opensms.herokuapp.com/publish",
            "verb": "POST",
         "useJwt": false
        },
       "stop": {
-        "url": "https://opensms.herokuapp.com/activity/stop",
+        "url": "https://opensms.herokuapp.com/stop",
            "verb": "POST",
         "useJwt": false
       },
       "validate": {
-        "url": "https://opensms.herokuapp.com/activity/validate",
+        "url": "https://opensms.herokuapp.com/validate",
         "verb": "POST",
         "useJwt": false
       }
