@@ -23,10 +23,10 @@
 				  "LastName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.LastName}}"
 				},
 				{
-				  "PhoneNumber": "{{Contact.Default.PhoneNumber}}"
+				  "PhoneNumber": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}"
 				},
 		 		{ 
-				  "EmailAddress": "{{Contact.Default.EmailAddress}}"
+				  "EmailAddress": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.EmailAddress}}"
 				}
 									
 			],
