@@ -176,6 +176,7 @@ define([
     }
 
     function save() {
+        debugger;
         var name = $('#select1').find('option:selected').html();
         var value = getMessage();
 
@@ -188,7 +189,7 @@ define([
         payload['arguments'].execute.inArguments = [{ "message": value }];
 
         payload['metaData'].isConfigured = true;
-
+debugger;
         connection.trigger('updateActivity', payload);
     }
 
