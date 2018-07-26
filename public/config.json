@@ -1,67 +1,61 @@
 {
-	"key": "2472e60a-9b16-4d31-9d3b-84af44788d20",
+	"key": "jb-custom-split",
 	"metaData": {
 		"icon": "images/icon.png",
-		"iconSmall": "images/iconSmall.png"
+		"iconSmall": "images/icon_small.png"
 	},
 	"type": "RESTDECISION",
 	"lang": {
 		"en-US": {
 			"name": "SMS Send",
-			"description": "Custom Split activity that makes a decision based on data from Service Cloud"
+			"description": "A Template for a custom Journey Builder activity"
 		}
 	},
 	"workflowApiVersion": "1.1",
 	"configurationArguments": {
 		"applicationExtensionKey": "2472e60a-9b16-4d31-9d3b-84af44788d20",
 		"save": {
-			"url": "https://opensms.herokuapp.com/activity/save",
+			"url": "https://opensms.herokuapp.com/journeybuilder/save",
 			"verb": "POST",
 			"body": "",
 			"useJwt": true,
-			"customerKey": "<EXTERNAL KEY OF THE SALT KEY FOR THE JWT>"
+			"customerKey": "2472e60a-9b16-4d31-9d3b-84af44788d20"
 		},
 		"publish": {
-			"url": "https://opensms.herokuapp.com/activity/publish",
+			"url": "https://opensms.herokuapp.com/journeybuilder/publish",
 			"verb": "POST",
 			"body": "",
 			"useJwt": true,
-			"customerKey": "<EXTERNAL KEY OF THE SALT KEY FOR THE JWT>"
+			"customerKey": "2472e60a-9b16-4d31-9d3b-84af44788d20"
 		},
 		"validate": {
-			"url": "https://opensms.herokuapp.com/activity/validate",
+			"url": "https://opensms.herokuapp.com/journeybuilder/validate",
 			"verb": "POST",
 			"body": "",
 			"useJwt": true,
-			"customerKey": "<EXTERNAL KEY OF THE SALT KEY FOR THE JWT>"
+			"customerKey": "2472e60a-9b16-4d31-9d3b-84af44788d20"
 		}
 	},
 	"wizardSteps": [
-		{"key": "eventdefinitionkey", "label": "Event Definition Key"},
-		{"key": "idselection", "label": "ID Selection"}
+		{"key": "eventdefinitionkey", "label": "Event Definition Key"}
 	],
 	"outcomes": [
 		{
-        "arguments": {
-            "branchResult": "buy_item",
-            "some argument": "passed from config.json for buy_item"
-        }
-    },
-    {
-        "arguments": {
-            "branchResult": "sell_item",
-            "some argument": "passed from config.json for sell_item"
-        }
-    },
-    {
-        "arguments": {
-            "branchResult": "hold_item",
-            "some argument": "passed from config.json for hold_item"
-        },
-        "metaData": {
-            "label": "MyCustomLabel"
-        }
-    }
+			"arguments": {
+				"branchResult": "yes_reg"
+			},
+			"metaData": {
+				"label": "yes registered"
+			}
+		},
+		{
+			"arguments": {
+				"branchResult": "not_reg"
+			},
+			"metaData": {
+				"label": "not registered"
+			}
+		}
 	],
 	"userInterfaces": {
 		"runningModal": {
@@ -73,34 +67,20 @@
 	},
 	"arguments": {
 		"execute": {
-			 "inArguments":[
-		 		{
-				  "FirstName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.FirstName}}"
-				},
-				{
-				  "LastName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.LastName}}"
-				},
-				{
-				  "PhoneNumber": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}"
-				},
-		 		{
-				  "EmailAddress": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.EmailAddress}}"
-				}
-									
-			],
+			"inArguments": [],
 			"outArguments": [],
-			"url": "https://opensms.herokuapp.com/activity/execute",
+			"url": "https://opensms.herokuapp.com/journeybuilder/execute",
 			"verb": "POST",
 			"body": "",
 			"header": "",
 			"format": "json",
 			"useJwt": true,
-			"customerKey": "<EXTERNAL KEY OF THE SALT KEY FOR THE JWT>",
+			"customerKey": "2472e60a-9b16-4d31-9d3b-84af44788d20",
 			"timeout": 10000
 		}
 	},
 	"edit": {
-		"url": "https://opensms.herokuapp.com/index.html",
+		"url": "https://opensms.herokuapp.com/journeybuilder/index.html",
 		"height": 200,
 		"width": 500
 	}
