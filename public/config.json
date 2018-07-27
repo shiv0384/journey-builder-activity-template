@@ -26,7 +26,7 @@
           "outArguments": [],
           "url": "https://opensms.herokuapp.com/journeybuilder/execute",
            "verb": "POST",
-            "body": "",
+            "body": "hghgjhgjhggg",
             "header": "",
             "format": "json",
             "useJwt": true,
