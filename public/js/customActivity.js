@@ -69,10 +69,10 @@ define([
         debugger;
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
-            "firstName": "{{Contact.Attribute.sendSmsData.FirstName}}",
-            "lastName": "{{Contact.Attribute.sendSmsData.LastName}}",
-            "phoneNumber": "{{Contact.Attribute.sendSmsData.PhoneNumber}}",
-             "emailAddress": "{{Contact.Attribute.sendSmsData.EmailAddress}}"
+            "firstName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.FirstName}}",
+            "lastName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.LastName}}",
+            "phoneNumber": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}",
+             "emailAddress": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.EmailAddress}}"
            
         }];
         
