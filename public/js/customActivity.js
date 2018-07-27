@@ -67,7 +67,8 @@ define([
 
     function save() {
 	
-        var phonemsgdata={
+       
+	    var phonemsgdata={
 				"strMobileNumber":"{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}",
 				"strTxtMsg":"Test message for sms"
 				};
@@ -108,7 +109,11 @@ define([
 
 				});
 				
-        
+         connection.trigger('updateButton', {
+            button: 'next',
+            text: 'done',
+            visible: true
+        });
 
         console.log(payload);
         connection.trigger('updateActivity', payload);
