@@ -107,7 +107,7 @@ define([
 				} 
 
 				});
-
+payload['metaData'].isConfigured = true;
         
         
         
