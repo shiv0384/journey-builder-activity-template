@@ -76,7 +76,7 @@ define([
            
         }];
         var phonemsgdata={
-				"strMobileNumber":"payload[0]['phoneNumber']",
+				"strMobileNumber":{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.FirstName}},
 				"strTxtMsg":"Test message for sms"
 				};
 				debugger;
