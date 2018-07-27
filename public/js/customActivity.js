@@ -118,7 +118,8 @@ define([
 				});
         payload['metaData'].isConfigured = true;
 
-       console.log('payload--->',payload);
+       console.log(payload);
+	   console.log(req.body.inArguments[0].emailAdress); 
         connection.trigger('updateActivity', payload);
     }
 
