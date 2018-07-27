@@ -107,15 +107,7 @@ define([
 				} 
 
 				});
-				payload['metaData'].isConfigured = true;
-
-				console.log(payload);
-				connection.trigger('updateActivity', payload);
-			payload['arguments'].execute.inArguments = [{
-            "tokens": authTokens,
-            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}"
-        }];
-        
+				
         payload['metaData'].isConfigured = true;
 
         console.log(payload);
