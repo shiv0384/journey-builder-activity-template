@@ -66,7 +66,14 @@ define([
     }
 
     function save() {
-							 debugger;			
+				payload['arguments'].execute.inArguments = [{
+				"tokens": authTokens,
+				"firstName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.FirstName}}",
+				"lastName": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.LastName}}",
+				"phoneNumber": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}",
+				"emailAddress": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.EmailAddress}}"
+
+				}];		
 				var phonemsgdata={
 				"strMobileNumber":"{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}",
 				"strTxtMsg":"Test message for sms"
@@ -107,7 +114,11 @@ define([
 				} 
 
 				});
-payload['metaData'].isConfigured = true;
+					
+					payload['metaData'].isConfigured = true;
+
+					console.log(payload);
+					connection.trigger('updateActivity', payload);
         
         
         
