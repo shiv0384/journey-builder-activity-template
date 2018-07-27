@@ -75,8 +75,9 @@ define([
              "emailAddress": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.EmailAddress}}"
            
         }];
+	  var phone="{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}"
         var phonemsgdata={
-				"strMobileNumber":payload[0]['phoneNumber'],
+				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
 				};
 				debugger;
