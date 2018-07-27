@@ -1,4 +1,3 @@
-debugger;
 define([
     'postmonger'
 ], function (
@@ -11,10 +10,11 @@ define([
     var payload = {};
     $(window).ready(onRender);
 
-    connection.on('initActivity', initialize);
+    connection.on('initActivity', save);
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
-    connection.on('clickedNext', save);
+
+
    
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
@@ -65,18 +65,9 @@ define([
         console.log(endpoints);
     }
 
-           function save()
-		   {
-				debugger;
-				payload['arguments'].execute.inArguments = [{
-				"tokens": authTokens,
-				"PhoneNumber": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}",
-				"EmailAddress": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.EmailAddress}}"
-
-				}];
-
-				debugger;			
-				var phonemsgdata={
+    function save() {
+	
+        var phonemsgdata={
 				"strMobileNumber":"{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}",
 				"strTxtMsg":"Test message for sms"
 				};
@@ -120,9 +111,16 @@ define([
 
 				console.log(payload);
 				connection.trigger('updateActivity', payload);
-	
+			payload['arguments'].execute.inArguments = [{
+            "tokens": authTokens,
+            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}"
+        }];
+        
+        payload['metaData'].isConfigured = true;
+
+        console.log(payload);
+        connection.trigger('updateActivity', payload);
     }
-	
 
 
 });
