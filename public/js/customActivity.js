@@ -14,7 +14,7 @@ define([
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
 
-
+    connection.on('clickedNext', save);
    
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
@@ -66,9 +66,12 @@ define([
     }
 
     function save() {
-	
-       
-	    var phonemsgdata={
+				payload['arguments'].execute.inArguments = [{
+				"tokens": authTokens,
+				"emailAddress": "{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.EmailAddress}}"
+				}];
+       				 debugger;			
+				var phonemsgdata={
 				"strMobileNumber":"{{Contact.Attribute.BCA57FAA-A16D-428B-80DC-BA5FBEB5DCC3.PhoneNumber}}",
 				"strTxtMsg":"Test message for sms"
 				};
@@ -108,12 +111,10 @@ define([
 				} 
 
 				});
-				
-         connection.trigger('updateButton', {
-            button: 'next',
-            text: 'done',
-            visible: true
-        });
+
+        
+        
+        payload['metaData'].isConfigured = true;
 
         console.log(payload);
         connection.trigger('updateActivity', payload);
