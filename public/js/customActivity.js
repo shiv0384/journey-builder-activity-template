@@ -76,7 +76,7 @@ define([
            
         }];
         var phonemsgdata={
-				"strMobileNumber":payload[0]['phoneNumber'],
+				"strMobileNumber":"payload[0]['phoneNumber']",
 				"strTxtMsg":"Test message for sms"
 				};
 				debugger;
