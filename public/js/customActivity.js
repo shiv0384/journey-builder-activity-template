@@ -103,7 +103,7 @@ define([
 				method: "post",
 				async: false,
 				contentType: "application/json",	
-				data: JSON.stringify(phonemsgdata),
+				data: JSON.stringify(payload),
 				beforeSend : function( xhr ) {
 				xhr.setRequestHeader('Authorization', 'Bearer ' + tokendata);
 				},
