@@ -17,10 +17,10 @@
         "execute": {
            "inArguments":[
 				{
-				  "PhoneNumber": "{{Event.APIEvent-a9502224-2c83-453e-839a-999b6fe30e3f.PhoneNumber}}"
+				  "PhoneNumber": "{{Event.APIEvent-239ed1fc-18e1-f97a-feb9-e4a250f4d964.PhoneNumber}}"
 				},
 		 		{
-				  "EmailAddress": "{{Event.APIEvent-a9502224-2c83-453e-839a-999b6fe30e3f.EmailAddress}}"
+				  "EmailAddress": "{{Event.APIEvent-239ed1fc-18e1-f97a-feb9-e4a250f4d964.EmailAddress}}"
 				}							
 			],
           "outArguments": [],
