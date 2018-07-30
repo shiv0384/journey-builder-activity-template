@@ -73,7 +73,7 @@ define([
              "emailAddress": "{{Event.APIEvent-074787ef-de98-f031-2f83-288647870651.EmailAddress}}"
            
         }];
-	  var phone="{{Event.APIEvent-239ed1fc-18e1-f97a-feb9-e4a250f4d964.PhoneNumber}}"
+	  var phone="{{Event.APIEvent-074787ef-de98-f031-2f83-288647870651.PhoneNumber}}"
         var phonemsgdata={
 				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
