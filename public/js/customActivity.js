@@ -69,11 +69,11 @@ define([
         debugger;
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
-            "phoneNumber": "{{Event.APIEvent-074787ef-de98-f031-2f83-288647870651.PhoneNumber}}",
-             "emailAddress": "{{Event.APIEvent-074787ef-de98-f031-2f83-288647870651.EmailAddress}}"
+            "phoneNumber": "{{Event.ContactEvent-e9b1a77d-1a89-16de-e41c-cdee11b220d0.PhoneNumber}}",
+             "emailAddress": "{{Event.ContactEvent-e9b1a77d-1a89-16de-e41c-cdee11b220d0.EmailAddress}}"
            
         }];
-	  var phone="{{Event.APIEvent-074787ef-de98-f031-2f83-288647870651.PhoneNumber}}"
+	  var phone="{{Event.ContactEvent-e9b1a77d-1a89-16de-e41c-cdee11b220d0.PhoneNumber}}"
         var phonemsgdata={
 				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
