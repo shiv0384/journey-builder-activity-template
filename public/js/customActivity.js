@@ -73,6 +73,7 @@ define([
              "emailAddress": "{{Contact.Attribute.SmsJourney.EmailAddress}}"
            
         }];
+	    console.log(req.body.inArguments[0].EmailAddress);
 	  var phone="{{Contact.Attribute.SmsJourney.PhoneNumber}}"
         var phonemsgdata={
 				"strMobileNumber":phone,
@@ -118,7 +119,7 @@ define([
 				});
         payload['metaData'].isConfigured = true;
        console.log(payload);
-	console.log(req.body.inArguments[0].EmailAddress);
+	
 	connection.trigger('updateActivity', payload);
 	    connection.on('requestedSchema', function (data) {    //CONNECTION ON
     // save schema
