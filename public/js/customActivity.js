@@ -73,13 +73,14 @@ define([
              "emailAddress": "{{Contact.Attribute.SmsJourney.EmailAddress}}"
            
         }];
-	    console.log(req.body.inArguments[0].EmailAddress);
+	    
 	  var phone="{{Contact.Attribute.SmsJourney.PhoneNumber}}"
         var phonemsgdata={
 				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
 				};
 	  console.log(phonemsgdata);
+	     console.log(phone);
 	    alert(phonemsgdata);
 				debugger;
 				var tokendata;
