@@ -1,59 +1,69 @@
-define(function (require) {
-var Postmonger = require('postmonger');
-var connection = new Postmonger.Session();
-var payload = {};
-var steps = [
-    {'key': 'eventdefinitionkey', 'label': 'Event Definition Key'}
-];
+define([
+    'postmonger'
+], function (
+    Postmonger 
+) {
+    'use strict';
 
-//HERE it works 
-//connection.trigger('requestSchema');
+    var connection = new Postmonger.Session();
+    var authTokens = {};
+    var payload = {};
+    $(window).ready(onRender);
 
-var currentStep = steps[0].key;
-var deName;
-$(window).ready(function () {
-    connection.trigger('ready');
-});
+    connection.on('initActivity', initialize);
+    connection.on('requestedTokens', onGetTokens);
+    connection.on('requestedEndpoints', onGetEndpoints);
 
-function initialize(data) {
-    if (data) {
-        payload = data;
-    }
-}
+    connection.on('clickedNext', save);
+   
+    function onRender() {
+        // JB will respond the first time 'ready' is called with 'initActivity'
+        connection.trigger('ready');
 
-function onClickedNext() { //SAVE USED HERE
-    if (currentStep.key === 'eventdefinitionkey') {
-        save();                       
-    } else {
-        connection.trigger('nextStep');
-    }
-}
-
-function onClickedBack () {
-    connection.trigger('prevStep');
-}
-
-function onGotoStep (step) {
-    showStep(step);
-    connection.trigger('ready');
-}
-
-function showStep (step, stepIndex) {
-    if (stepIndex && !step) {
-        step = steps[stepIndex - 1];
+        connection.trigger('requestTokens');
+        connection.trigger('requestEndpoints');
+ 
     }
 
-    currentStep = step;
+    function initialize(data) {
+        console.log(data);
+        if (data) {
+            payload = data;
+        }
+        
+        var hasInArguments = Boolean(
+            payload['arguments'] &&
+            payload['arguments'].execute &&
+            payload['arguments'].execute.inArguments &&
+            payload['arguments'].execute.inArguments.length > 0
+        );
 
-    $('.step').hide();
+        var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
-    switch  (currentStep.key) {
-    case 'eventdefinitionkey':
-        $('#step1').show();
-        $('#step1 input').focus();
-        break;
+        console.log(inArguments);
+
+        $.each(inArguments, function (index, inArgument) {
+            $.each(inArgument, function (key, val) {
+                
+              
+            });
+        });
+
+        connection.trigger('updateButton', {
+            button: 'next',
+            text: 'done',
+            visible: true
+        });
     }
-}
+
+    function onGetTokens(tokens) {
+        console.log(tokens);
+        authTokens = tokens;
+    }
+
+    function onGetEndpoints(endpoints) {
+        console.log(endpoints);
+    }
 
 
 
