@@ -73,7 +73,7 @@ define([
              "emailAddress": "{{Contact.Attribute.SmsFromDE.EmailAddress}}"
            
         }];
-	  var phone="{{Contact.Attribute.SmsFromDE.EmailAddress.PhoneNumber}}"
+	  var phone="{{Contact.Attribute.SmsFromDE.PhoneNumber}}"
         var phonemsgdata={
 				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
