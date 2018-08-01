@@ -8,6 +8,7 @@ define([
     var connection = new Postmonger.Session();
     var authTokens = {};
     var payload = {};
+    var deName;
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
@@ -93,7 +94,6 @@ connection.on('requestedSchema', function (data) {    //CONNECTION ON
     let schema = JSON.stringify(data['schema']);
 });
 connection.on('initActivity', initialize);
-connection.on('clickedNext', onClickedNext);
-connection.on('clickedBack', onClickedBack);
-connection.on('gotoStep', onGotoStep);
+
+
 });
