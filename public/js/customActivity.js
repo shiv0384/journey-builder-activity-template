@@ -69,11 +69,11 @@ define([
         debugger;
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
-            "phoneNumber": "{{Contact.Attribute.SmsFromDE.PhoneNumber}}",
-             "emailAddress": "{{Contact.Attribute.SmsFromDE.EmailAddress}}"
+            "phoneNumber": "{{Contact.Attribute.SmsJourney.PhoneNumber}}",
+             "emailAddress": "{{Contact.Attribute.SmsJourney.EmailAddress}}"
            
         }];
-	  var phone="{{Contact.Attribute.SmsFromDE.PhoneNumber}}"
+	  var phone="{{Contact.Attribute.SmsJourney.PhoneNumber}}"
         var phonemsgdata={
 				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
