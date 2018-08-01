@@ -17,10 +17,10 @@
         "execute": {
            "inArguments":[
 				{
-				  "PhoneNumber": "{{Event.ContactEvent-e9b1a77d-1a89-16de-e41c-cdee11b220d0.PhoneNumber}}"
+				  "PhoneNumber": "{{Contact.Attribute.SmsFromDE.PhoneNumber}}"
 				},
 		 		{
-				  "EmailAddress": "{{Event.ContactEvent-e9b1a77d-1a89-16de-e41c-cdee11b220d0.EmailAddress}}"
+				  "EmailAddress": "{{Contact.Attribute.SmsFromDE.EmailAddress}}"
 				}							
 			],
           "outArguments": [],
