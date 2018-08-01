@@ -74,7 +74,7 @@ define([
            
         }];
 	    
-	  var phone="{{Contact.Attribute.SmsJourney.PhoneNumber}}"
+	  var phone="8452881510";
         var phonemsgdata={
 				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
