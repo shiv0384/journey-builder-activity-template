@@ -17,10 +17,10 @@
         "execute": {
            "inArguments":[
 				{
-				  "PhoneNumber": "{{Contact.Attribute.SmsFromDE.PhoneNumber}}"
+				  "PhoneNumber": "{{Contact.Attribute.SmsJourney.PhoneNumber}}"
 				},
 		 		{
-				  "EmailAddress": "{{Contact.Attribute.SmsFromDE.EmailAddress}}"
+				  "EmailAddress": "{{Contact.Attribute.SmsJourney.EmailAddress}}"
 				}							
 			],
           "outArguments": [],
