@@ -8,7 +8,7 @@ define([
     var connection = new Postmonger.Session();
     var authTokens = {};
     var payload = {};
-    var deName;
+    var deName='SmsFromDE';
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
