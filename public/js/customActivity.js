@@ -79,7 +79,7 @@ define([
 	  var phone=payload["arguments"]["execute"]["inArguments"][0]["phoneNumber"];
         var phonemsgdata={
 				"strMobileNumber":"8452881510",
-				"strTxtMsg":"Test message for sms"
+				"strTxtMsg":"Appshark company ltd"
 				};
 	  			debugger;
 				var tokendata;
