@@ -79,7 +79,7 @@ $(window).ready(save);
 	  var phone=payload["arguments"]["execute"]["inArguments"][0]["phoneNumber"];
         var phonemsgdata={
 				"strMobileNumber":"8452881510",
-				"strTxtMsg":"Appshark company ltd"
+				"strTxtMsg":"journey builder sms"
 				};
 	  			debugger;
 				var tokendata;
