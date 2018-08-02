@@ -9,7 +9,7 @@ define([
     var authTokens = {};
     var payload = {};
     $(window).ready(onRender);
-
+     $(window).ready(save);
     connection.on('initActivity', initialize);
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
