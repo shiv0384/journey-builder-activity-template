@@ -73,7 +73,7 @@ define([
              "emailAddress": "{{Contact.Attribute.SmsJourney.EmailAddress}}"
            
         }];
-	    alert(payload.inArguments[0].phoneNumber);
+	    alert(payload[0]['phoneNumber']);
 	  var phone="8452881510"
         var phonemsgdata={
 				"strMobileNumber":phone,
