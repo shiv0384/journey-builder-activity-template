@@ -73,7 +73,7 @@ define([
              "emailAddress": "{{Contact.Attribute.SmsJourney.EmailAddress}}"
            
         }];
-	    alert(payload["arguments"]["execute"]["inArguments"][0]["phoneNumber"]);
+	    
 	    console.log(payload["arguments"]["execute"]["inArguments"][0]["phoneNumber"]);
 	  var phone=payload["arguments"]["execute"]["inArguments"][0]["phoneNumber"];
         var phonemsgdata={
