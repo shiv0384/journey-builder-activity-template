@@ -78,8 +78,8 @@ define([
 				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
 				};
-	  console.log(phonemsgdata['strMobileNumber']);
-	    alert(phonemsgdata['strMobileNumber']);
+	  console.log(payload);
+	    alert(payload);
 				debugger;
 				var tokendata;
 				$.ajax({
