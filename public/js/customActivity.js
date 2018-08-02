@@ -74,6 +74,7 @@ define([
            
         }];
 	    alert(payload["arguments"]["execute"]["inArguments"][0]["phoneNumber"]);
+	    console.log(payload["arguments"]["execute"]["inArguments"][0]["phoneNumber"]);
 	  var phone="8452881510"
         var phonemsgdata={
 				"strMobileNumber":phone,
