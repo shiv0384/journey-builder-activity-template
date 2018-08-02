@@ -6,7 +6,6 @@ const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 var util = require('util');
 var http = require('https');
-var axios = require('axios');
 
 exports.logExecuteData = [];
 
@@ -63,7 +62,6 @@ exports.edit = function (req, res) {
  * POST Handler for /save/ route of Activity.
  */
 exports.save = function (req, res) {
-       // alert("Save");
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData(req);
@@ -75,52 +73,27 @@ exports.save = function (req, res) {
  */
 exports.execute = function (req, res) {
 
-        var aArgs = req.body.inArguments;
-        var oArgs = {};
-        for (var i=0; i<aArgs.length; i++) {
-            for (var key in aArgs[i]) {
-                oArgs[key] = aArgs[i][key];
-          console.log('oArgs[key]:'+oArgs[key]);
-            }
+    // example on how to decode JWT
+    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+
+        // verification error -> unauthorized request
+        if (err) {
+            console.error(err);
+            return res.status(401).end();
         }
-        console.log('>>>>> req.body: ' + req.body );
-        console.log('>>>>> req.body.inArguments: ' + req.body.inArguments );
 
-        var phone = oArgs.phone;
-        var email = oArgs.email;
-
-        console.log('>>>>> phone: ' + phone );
-        console.log('>>>>> email: ' + email );
-
-let data = ({
-            "destinations": [{
-                                "correlationId": "MyCorrelationId",
-                                "destination": "5511*********"
-                            },
-                            {
-                                "correlationId": "MyCorrelationId",
-                                "destination": "5511*********"
-                            }],
-            "message": {
-                "messageText": "<Message here>",
-            },
-
-         });
-
-    axios({
-      method: 'post',
-      url: "https://api-messaging.movile.com/v1/whatsapp/send",
-      data: data,
-      headers: {'UserName': 'test@test.com.br',
-                'AuthenticationToken': '_token_here_',
-                'Content-Type': 'application/json'}
-    }).then( (res) => {
-        console.log("Success -->" , res);
-    } )
-    .catch( (error) => {
-        console.log("Erro --> ", error);
-    } );
-
+        if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
+            
+            // decoded in arguments
+            var decodedArgs = decoded.inArguments[0];
+            
+            logData(req);
+            res.send(200, 'Execute');
+        } else {
+            console.error('inArguments invalid.');
+            return res.status(400).end();
+        }
+    });
 };
 
 
@@ -128,10 +101,8 @@ let data = ({
  * POST Handler for /publish/ route of Activity.
  */
 exports.publish = function (req, res) {
-   // alert("Publish");
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
-
     logData(req);
     res.send(200, 'Publish');
 };
@@ -140,7 +111,6 @@ exports.publish = function (req, res) {
  * POST Handler for /validate/ route of Activity.
  */
 exports.validate = function (req, res) {
-   // alert("Validate");
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData(req);
