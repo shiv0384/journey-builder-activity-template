@@ -1,11 +1,33 @@
-    
-	  var phone="8452881510";
+define([
+    'postmonger'
+], function (
+    Postmonger 
+) {
+    'use strict';
+
+    var connection = new Postmonger.Session();
+    var authTokens = {};
+	$(window).ready(onRender);
+	connection.on('initActivity', initialize);
+	 connection.on('requestedTokens', onGetTokens);
+	 connection.on('requestedEndpoints', onGetEndpoints);
+	       
+	 connection.on('clickedNext', save);
+	 function onRender() {
+        // JB will respond the first time 'ready' is called with 'initActivity'
+        connection.trigger('ready');
+
+        connection.trigger('requestTokens');
+        connection.trigger('requestEndpoints');
+ 
+    }
+	function initialize(data) {
+       var phone="{{Contact.Attribute.SmsJourney.PhoneNumber}}"
         var phonemsgdata={
 				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
 				};
 	  console.log(phonemsgdata);
-	     console.log(phone);
 	    alert(phonemsgdata);
 				debugger;
 				var tokendata;
@@ -39,11 +61,17 @@
 				},
 				error:function(res){
 				console.log("Error");
-
-				} 
-
+				}
 				});
-       
-		    
-   
+    }
+	function onGetTokens(tokens) {
+        console.log(tokens);
+        authTokens = tokens;
+    }
 
+    function onGetEndpoints(endpoints) {
+        console.log(endpoints);
+    }
+	function save() {
+	console.log("sent");
+	}
