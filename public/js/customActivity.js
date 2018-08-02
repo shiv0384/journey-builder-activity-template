@@ -70,7 +70,9 @@ define([
     }
 
 	function save() {
-		payload['metaData'].isConfigured = true;
+		 phonemsgdata['metaData'].isConfigured = true;
+       console.log(phonemsgdata);
+	connection.trigger('updateActivity', phonemsgdata);
 	console.log("sent");
 	}
 
