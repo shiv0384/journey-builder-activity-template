@@ -7,6 +7,7 @@ define([
 
     var connection = new Postmonger.Session();
     var authTokens = {};
+	var payload = {};
 	$(window).ready(onRender);
 	connection.on('initActivity', initialize);
 	 connection.on('requestedTokens', onGetTokens);
@@ -70,9 +71,9 @@ define([
     }
 
 	function save() {
-		 phonemsgdata['metaData'].isConfigured = true;
-       console.log(phonemsgdata);
-	connection.trigger('updateActivity', phonemsgdata);
+		 payload['metaData'].isConfigured = true;
+       console.log(payload);
+	connection.trigger('updateActivity', payload);
 	console.log("sent");
 	}
 
