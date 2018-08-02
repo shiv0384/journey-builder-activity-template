@@ -1,11 +1,4 @@
-debugger;
-        payload['arguments'].execute.inArguments = [{
-            "tokens": authTokens,
-            "phoneNumber": "{{Contact.Attribute.SmsJourney.PhoneNumber}}",
-             "emailAddress": "{{Contact.Attribute.SmsJourney.EmailAddress}}"
-           
-        }];
-	    
+    
 	  var phone="8452881510";
         var phonemsgdata={
 				"strMobileNumber":phone,
