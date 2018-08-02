@@ -14,7 +14,7 @@ define([
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
 
-    connection.on('clickedNext', save);
+    //connection.on('clickedNext', save);
    
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
@@ -59,6 +59,7 @@ define([
     function onGetTokens(tokens) {
         console.log(tokens);
         authTokens = tokens;
+	    save();
     }
 
     function onGetEndpoints(endpoints) {
