@@ -10,7 +10,7 @@ define([
 	$(window).ready(onRender);
 	connection.on('initActivity', initialize);
 	 connection.on('requestedTokens', onGetTokens);
-	 connection.on('requestedEndpoints', onGetEndpoints);
+	
 	       
 	 connection.on('clickedNext', save);
 	 function onRender() {
@@ -69,9 +69,6 @@ define([
         authTokens = tokens;
     }
 
-    function onGetEndpoints(endpoints) {
-        console.log(endpoints);
-    }
 	function save() {
 	console.log("sent");
 	}
