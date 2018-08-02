@@ -16,12 +16,7 @@
     "arguments": {
         "execute": {
            "inArguments":[
-				{
-				  "PhoneNumber": "{{Contact.Attribute.SmsFromDE.PhoneNumber}}"
-				},
-		 		{
-				  "EmailAddress": "{{Contact.Attribute.SmsFromDE.EmailAddress}}"
-				}							
+											
 			],
           "outArguments": [],
           "url": "https://opensms.herokuapp.com/journeybuilder/execute",
