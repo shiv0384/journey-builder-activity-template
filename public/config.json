@@ -47,7 +47,7 @@
        },
       "stop": {
         "url": "https://opensms.herokuapp.com/stop",
-           "verb": "POST",
+          "verb": "POST",
         "useJwt": true
       },
       "validate": {
