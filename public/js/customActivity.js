@@ -72,3 +72,5 @@ define([
 	function save() {
 	console.log("sent");
 	}
+
+});
