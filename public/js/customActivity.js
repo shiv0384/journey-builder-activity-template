@@ -28,7 +28,7 @@ define([
 				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
 				};
-	  console.log(phonemsgdata[strMobileNumber]);
+	  console.log(phonemsgdata['strMobileNumber']);
 	    
 	    alert(phonemsgdata[strMobileNumber]);
 				debugger;
