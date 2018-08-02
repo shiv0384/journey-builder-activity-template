@@ -79,7 +79,7 @@ define([
 				"strTxtMsg":"Test message for sms"
 				};
 	  console.log(payload);
-	    alert(payload);
+	    alert("----" + payload);
 				debugger;
 				var tokendata;
 				$.ajax({
