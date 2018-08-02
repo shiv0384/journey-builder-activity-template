@@ -68,7 +68,7 @@ $(window).ready(save);
 
     function save() {
         debugger;
-        payload['arguments'].execute.inArguments = [{
+       /* payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
             "phoneNumber": "{{Contact.Attribute.SmsJourney.PhoneNumber}}",
              "emailAddress": "{{Contact.Attribute.SmsJourney.EmailAddress}}"
@@ -76,7 +76,7 @@ $(window).ready(save);
         }];
 	    
 	    console.log(payload["arguments"]["execute"]["inArguments"][0]["phoneNumber"]);
-	  var phone=payload["arguments"]["execute"]["inArguments"][0]["phoneNumber"];
+	  var phone=payload["arguments"]["execute"]["inArguments"][0]["phoneNumber"];*/
         var phonemsgdata={
 				"strMobileNumber":"8452881510",
 				"strTxtMsg":"journey builder sms"
