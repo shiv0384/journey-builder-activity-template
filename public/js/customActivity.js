@@ -73,14 +73,13 @@ define([
              "emailAddress": "{{Contact.Attribute.SmsJourney.EmailAddress}}"
            
         }];
+	    alert(payload.inArguments[0].phoneNumber);
 	  var phone="8452881510"
         var phonemsgdata={
 				"strMobileNumber":phone,
 				"strTxtMsg":"Test message for sms"
 				};
-	  console.log(payload);
-	    alert("----" + payload);
-				debugger;
+	  			debugger;
 				var tokendata;
 				$.ajax({
 
