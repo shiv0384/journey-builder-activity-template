@@ -13,8 +13,8 @@ define([
     connection.on('initActivity', initialize);
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
-	save();
-   // connection.on('clickedNext', save);
+	connection.on('onLoad', save);
+   connection.on('clickedNext', save);
    
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
