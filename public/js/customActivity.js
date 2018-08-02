@@ -70,6 +70,7 @@ define([
     }
 
 	function save() {
+		payload['metaData'].isConfigured = true;
 	console.log("sent");
 	}
 
