@@ -56,13 +56,8 @@ $(window).ready(save);
 				} 
 
 				});
-        payload['metaData'].isConfigured = true;
-       console.log(payload);
-	connection.trigger('updateActivity', payload);
-	    connection.on('requestedSchema', function (data) {    //CONNECTION ON
-    // save schema
-    console.log('*** Schema ***', JSON.stringify(data['schema']));
-    let schema = JSON.stringify(data['schema']);
+       
+       
 });
     }
 
