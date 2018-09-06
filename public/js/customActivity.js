@@ -8,7 +8,7 @@ define([
     var connection = new Postmonger.Session();
     var authTokens = {};
     var payload = {};
-    $(window).ready(onRender);
+    
 $(window).ready(save);
     
 
