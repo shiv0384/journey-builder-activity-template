@@ -14,12 +14,7 @@ $(window).ready(save);
 
     function save() {
         debugger;
-       /* payload['arguments'].execute.inArguments = [{
-            "tokens": authTokens,
-            "phoneNumber": "{{Contact.Attribute.SmsJourney.PhoneNumber}}",
-             "emailAddress": "{{Contact.Attribute.SmsJourney.EmailAddress}}"
-           
-        }];
+       
 	        
         var phonemsgdata={
 				"strMobileNumber":"8452881510",
